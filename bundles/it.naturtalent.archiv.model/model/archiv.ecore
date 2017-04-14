@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="archive" nsURI="http://www.example.org/archive" nsPrefix="archive">
+  <eClassifiers xsi:type="ecore:EClass" name="Register">
+    <eOperations name="hasName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="chain" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments/>
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="counter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EShort"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numericData" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EShort"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alphaData" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Ordner">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="#//EmptyString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="registers" upperBound="-1"
+        eType="#//Register" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="registerType" eType="#//RegisterType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="archiv" eType="#//Archiv"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RegisterType">
+    <eLiterals name="NumericType" value="1" literal="Zahlenregister"/>
+    <eLiterals name="StringType" literal="Blankregister"/>
+    <eLiterals name="LetterType" value="2" literal="Buchstabenregister"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="EmptyString" instanceClassName="java.lang.String">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="maxLength" value="20"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Archiv">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="location" eType="ecore:EClass ../../it.naturtalent.location.model/model/location.ecore#//Adresse"/>
+  </eClassifiers>
+</ecore:EPackage>

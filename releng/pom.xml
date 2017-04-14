@@ -1,0 +1,22 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>it.naturtalent.archiv</groupId>
+	<artifactId>it.naturtalent.archiv.releng</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>it.naturtalent.archiv</groupId>
+		<artifactId>it.naturtalent.archiv.root</artifactId>
+		<version>1.0.0-SNAPSHOT</version>	
+	</parent>
+
+	<modules>
+		<module>it.naturtalent.archiv.target</module>
+		<!-- <module>it.naturtalent.archiv.update</module>  -->	
+	</modules>
+
+</project>
+
+

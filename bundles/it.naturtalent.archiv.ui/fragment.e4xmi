@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmi:id="_p5mkwNVJEeO9sqd9lLiHmA">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_H6lsINVKEeO9sqd9lLiHmA" featurename="children" parentElementId="it.naturtalent.e4.project.ui.partstack.1">
+    <elements xsi:type="basic:Part" xmi:id="_NwAnYNVKEeO9sqd9lLiHmA" elementId="it.naturtalent.archiv.view" contributionURI="bundleclass://it.naturtalent.archiv.ui/it.naturtalent.archiv.ui.parts.ArchivPart" label="Archiv View" iconURI="icon://ICON_PROJECT" closeable="true"/>
+    <elements xsi:type="basic:Part" xmi:id="_BufMEINDEeWak4mP9DebaA" elementId="it.naturtalent.archiv.ui.part.archivview" contributionURI="bundleclass://it.naturtalent.archiv.ui/it.naturtalent.archiv.ui.parts1.ArchivView" label="ArchivView" iconURI="icon://ICON_PROJECT"/>
+    <elements xsi:type="basic:Part" xmi:id="_OnzuYJVLEeWDtc4tv-yfHw" elementId="it.naturtalent.archiv.ui.part.archivMasterDetails" contributionURI="bundleclass://it.naturtalent.archiv.ui/it.naturtalent.archiv.ui.parts1.ArchivMasterDetailsView" label="ArchivMaster" iconURI="icon://ICON_PROJECT" closeable="true"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_k2RA8N1QEeOR0PrwBwBqZg" featurename="addons" parentElementId="it.naturtalent.e4.application">
+    <elements xsi:type="application:Addon" xmi:id="_lybHMN1QEeOR0PrwBwBqZg" elementId="it.naturtalent.archiv.ui.addon.0" contributionURI="bundleclass://it.naturtalent.archiv.ui/it.naturtalent.archiv.ui.ArchivAddon"/>
+  </fragments>
+</fragment:ModelFragments>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.ecp.view.model.provider.xmi.file">
+
+<file filePath="viewmodels/OrdnerDefault.view"/>
+
+<file filePath="viewmodels/Register.view"/>
+
+
+
+<file
+      filePath="viewmodels/Ordner.view">
+   <filter
+         key="it.naturtalent.archiv.viewmodel.filter1"
+         value="it.naturtalent.archiv.viewmodel.filter1">
+   </filter>
+</file>
+<file
+      filePath="viewmodels/ShortRegister.view">
+   <filter
+         key="it.naturtalent.archiv.viewmodel.shortRegister"
+         value="it.naturtalent.archiv.viewmodel.shortRegister">
+   </filter>
+</file>
+
+   </extension>
+
+</plugin>

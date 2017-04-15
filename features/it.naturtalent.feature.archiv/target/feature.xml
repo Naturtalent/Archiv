@@ -2,8 +2,8 @@
 <feature
       id="it.naturtalent.feature.archiv"
       label="Archiv"
-      version="1.0.0.201704141636"
-      provider-name="Dieter Apel">
+      version="1.0.0.201704151054"
+      provider-name="Dieter.Apel">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
@@ -21,7 +21,7 @@
          id="it.naturtalent.archiv.model"
          download-size="66"
          install-size="132"
-         version="1.0.0.201704141636"
+         version="1.0.0.201704151054"
          unpack="false"/>
 
 </feature>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/170" xmi:id="_6kMGAP9sEeWr9M_x1uru3Q" name="ShortRegister" ecorePath="/it.naturtalent.archiv.model/model/archiv.ecore">
+  <rootEClass href="http://www.example.org/archive#//Register"/>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_6kMtEP9sEeWr9M_x1uru3Q" name="Control label" labelAlignment="Left">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_6kMtEf9sEeWr9M_x1uru3Q">
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.example.org/archive#//Register/label"/>
+    </domainModelReference>
+  </children>
+</org.eclipse.emf.ecp.view.model:View>

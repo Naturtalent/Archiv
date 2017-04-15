@@ -14,7 +14,7 @@
 
 	<modules>
 		<module>it.naturtalent.archiv.target</module>
-		<!-- <module>it.naturtalent.archiv.update</module>  -->	
+		<module>it.naturtalent.archiv.update</module>	
 	</modules>
 
 </project>

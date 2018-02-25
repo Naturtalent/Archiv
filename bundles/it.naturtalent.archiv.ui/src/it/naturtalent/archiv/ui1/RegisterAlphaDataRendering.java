@@ -14,10 +14,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 
-import archive.Ordner;
-import archive.RegisterType;
 import it.naturtalent.emf.model.Activator;
 import it.naturtalent.emf.model.ModelEventKeys;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.RegisterType;
 
 public class RegisterAlphaDataRendering extends TextControlSWTRenderer
 {

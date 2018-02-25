@@ -1,11 +1,7 @@
 package it.naturtalent.archiv.ui1;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecp.internal.edit.ECPControlHelper;
-import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -25,14 +21,13 @@ import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 
-import archive.Archiv;
-import archive.ArchiveFactory;
-import archive.Ordner;
-import archive.impl.ArchivePackageImpl;
 import it.naturtalent.archiv.ui.dialogs1.ArchivLinkDialog;
 import it.naturtalent.archiv.ui.dialogs1.OrdnerDialog;
 import it.naturtalent.icons.core.Icon;
 import it.naturtalent.icons.core.IconSize;
+import it.naturtalent.archiv.model.archiv.Archiv;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.impl.ArchivPackageImpl;
 
 /**
  * Vom ArchivLinkRenderer benutztes Layout zur Darstellung des einem Ordner zugeordneten Archivs.
@@ -98,7 +93,7 @@ public class ArchivLinkRendererComposite extends Composite
 			public void linkActivated(HyperlinkEvent e)
 			{
 				// das gelinkte Archiv oeffnen
-				OrdnerDialog dialog = new OrdnerDialog(parent.getShell(), ordner.getArchiv());
+				OrdnerDialog dialog = new OrdnerDialog(parent.getShell(), ordner.eContainmentFeature());
 				dialog.open();
 				
 			}			
@@ -116,14 +111,16 @@ public class ArchivLinkRendererComposite extends Composite
 			{				
 				ArchivLinkDialog linkDialog = new ArchivLinkDialog(composite.getShell());				
 				if(linkDialog.open() == ArchivLinkDialog.OK)
-				{					
-					EReference eReference = ArchivePackageImpl.eINSTANCE.getOrdner_Archiv();
+				{			
+					/*
+					EReference eReference = ArchivPackageImpl.eINSTANCE.
 					EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(ordner);
 					Archiv archiv = linkDialog.getSelectedArchiv();
 					Command setCommand = SetCommand.create(domain, ordner, eReference, archiv);
 					if(setCommand.canExecute())
 						domain.getCommandStack().execute(setCommand);
 					updateWidgets();
+					*/
 				}
 			}
 		});
@@ -138,7 +135,7 @@ public class ArchivLinkRendererComposite extends Composite
 			public void widgetSelected(SelectionEvent e)
 			{				
 				EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(ordner);
-				Archiv archiv = ordner.getArchiv();
+				Archiv archiv = (Archiv) ordner.eContainingFeature();
 				Command delCommand = DeleteCommand.create(domain, archiv);
 				if(delCommand.canExecute())
 					domain.getCommandStack().execute(delCommand);
@@ -156,7 +153,7 @@ public class ArchivLinkRendererComposite extends Composite
 	{
 		if ((ordner != null) && (!hyperlink.isDisposed()))
 		{
-			Archiv archiv = ordner.getArchiv();
+			Archiv archiv = (Archiv) ordner.eContainmentFeature();
 			if (archiv == null)
 			{		
 				// kein Archiv zugeordnet

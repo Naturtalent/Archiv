@@ -9,21 +9,8 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated archiv -->
       <factory
-            uri="http://www.example.org/archive"
-            class="archive.provider.ArchiveItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated archiv -->
-      <factory
-            uri="http://it.naturtalent/location"
-            class="location.provider.LocationItemProviderAdapterFactory"
+            uri="http://it.naturtalent/archiv"
+            class="it.naturtalent.archiv.model.archiv.provider.ArchivItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

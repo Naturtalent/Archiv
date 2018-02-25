@@ -19,8 +19,8 @@ import org.eclipse.swt.events.TreeAdapter;
 import org.eclipse.swt.events.TreeEvent;
 import org.eclipse.swt.widgets.Composite;
 
-import archive.Ordner;
 import it.naturtalent.archiv.ui.Activator;
+import it.naturtalent.archiv.ui.ArchivUtils;
 import it.naturtalent.archiv.ui.actions1.DeleteArchivAction;
 import it.naturtalent.archiv.ui.actions1.EditOrdnerAction;
 import it.naturtalent.archiv.ui.actions1.NewArchivAction;
@@ -28,6 +28,7 @@ import it.naturtalent.archiv.ui1.RegisterTypeSorter;
 import it.naturtalent.emf.model.actions.DefaultModelAction;
 import it.naturtalent.emf.model.actions.DefaultModelActionDistributor;
 import it.naturtalent.emf.model.parts.DefaultMasterDetailsModelView;
+import it.naturtalent.archiv.model.archiv.Ordner;
 
 /**
  * Archiv MasterDetailsView
@@ -125,7 +126,7 @@ public class ArchivMasterDetailsView extends DefaultMasterDetailsModelView
 		
 		viewID = Id;
 
-		ecpProject = Activator.getECPProject();
+		ecpProject = ArchivUtils.getArchivProject();
 		final StructuredViewer masterViewer = getMasterViewer();
 		
 		// Aktionen (Toolbar)
@@ -167,7 +168,7 @@ public class ArchivMasterDetailsView extends DefaultMasterDetailsModelView
 			}
 		});
 		
-		masterViewer.setInput(Activator.getECPProject());
+		masterViewer.setInput(ArchivUtils.getArchivProject());
 		masterViewer.setSorter(registerTypeSorter);	
 		
 		setService(service);

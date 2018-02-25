@@ -14,25 +14,23 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecp.core.ECPProject;
 import org.eclipse.emf.ecp.spi.ui.util.ECPHandlerHelper;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Display;
 
-import archive.ArchivePackage;
-import archive.Ordner;
-import archive.Register;
 import it.naturtalent.archiv.ui.Activator;
+import it.naturtalent.archiv.ui.ArchivUtils;
 import it.naturtalent.archiv.ui.actions1.SaveAction;
 import it.naturtalent.e4.project.ui.DefaultNtProjectProperty;
-import it.naturtalent.e4.project.ui.NtProjectEventKeys;
 import it.naturtalent.emf.model.EMFModelUtils;
-import it.naturtalent.emf.model.ModelEventKeys;
+import it.naturtalent.archiv.model.archiv.Archiv;
+import it.naturtalent.archiv.model.archiv.ArchivPackage;
+import it.naturtalent.archiv.model.archiv.Archive;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.Register;
 
 
 
@@ -47,7 +45,7 @@ public class ArchivProjectProperty extends DefaultNtProjectProperty
 	
 	public ArchivProjectProperty()
 	{
-		ecpProject = Activator.getECPProject();
+		ecpProject = ArchivUtils.getArchivProject();
 		undoEventKey = ArchivViewEvent.ARCHIV_EVENT_UNDO;
 		deleteEventKey = ArchivViewEvent.ARCHIV_EVENT_DELETE;
 	}
@@ -160,7 +158,7 @@ public class ArchivProjectProperty extends DefaultNtProjectProperty
 			if(init() == null)
 			{		
 				// neues Register erzeugen 
-				EClass newMEType = ArchivePackage.eINSTANCE.getRegister();
+				EClass newMEType = ArchivPackage.eINSTANCE.getRegister();
 				EPackage ePackage = newMEType.getEPackage();
 				ntPropertyData = ePackage.getEFactoryInstance().create(newMEType);
 				Register register = (Register)ntPropertyData;
@@ -319,6 +317,30 @@ public class ArchivProjectProperty extends DefaultNtProjectProperty
 	@Override
 	public Object init()
 	{
+		
+		Archive archiveRoot = ArchivUtils.getArchive();
+		List<Archiv>archive =  archiveRoot.getArchiv();
+		for(Archiv archiv : archive)
+		{
+			List<Ordner>ordners = archiv.getOrdner();
+			for(Ordner ordner : ordners)
+			{
+				List<Register>registers = ordner.getRegisters();
+				for(Register register : registers)
+				{
+					if(StringUtils.equals(register.getProjectID(), ntProjectID))
+					{													
+						ntPropertyData = register;
+						oldParentOrdner = ordner;
+						return ntPropertyData;
+					}
+				}
+			}
+		}
+
+		
+		
+		/*
 		ntPropertyData = null;
 		ecpProject = Activator.getECPProject();
 		EList<Object>contents = ecpProject.getContents();
@@ -343,6 +365,7 @@ public class ArchivProjectProperty extends DefaultNtProjectProperty
 				}
 			}
 		}
+		*/
 		
 		// 
 		log.error("keine Propertydaten im Modell gespeichert");

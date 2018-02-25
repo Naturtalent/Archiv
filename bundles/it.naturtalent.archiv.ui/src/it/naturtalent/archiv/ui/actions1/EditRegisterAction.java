@@ -4,12 +4,12 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.widgets.Display;
 
-import archive.Ordner;
-import archive.Register;
 import it.naturtalent.archiv.ui.dialogs1.RegisterDialog;
 import it.naturtalent.emf.model.actions.DefaultModelAction;
 import it.naturtalent.icons.core.Icon;
 import it.naturtalent.icons.core.IconSize;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.Register;
 
 public class EditRegisterAction extends DefaultModelAction
 {

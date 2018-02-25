@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecp.core.ECPProject;
 import org.eclipse.emf.ecp.spi.ui.ECPReferenceServiceImpl;
 import org.eclipse.emf.ecp.ui.view.ECPRendererException;
 import org.eclipse.emf.ecp.ui.view.swt.DefaultReferenceService;
@@ -19,18 +18,17 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.swt.widgets.Composite;
 
-import archive.Archiv;
-import archive.Ordner;
-import archive.Register;
 import it.naturtalent.archiv.ui.Activator;
 import it.naturtalent.archiv.ui.actions1.SaveAction;
 import it.naturtalent.archiv.ui.actions1.UndoModelAction;
 import it.naturtalent.archiv.ui.dialogs1.OrdnerDialog;
 import it.naturtalent.emf.model.ModelEventKey;
-import it.naturtalent.emf.model.ModelEventKeys;
 import it.naturtalent.emf.model.actions.DefaultModelAction;
 import it.naturtalent.emf.model.actions.DefaultModelActionDistributor;
 import it.naturtalent.emf.model.parts.DefaultDetailsComposite;
+import it.naturtalent.archiv.model.archiv.Archiv;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.Register;
 
 
 /**

@@ -20,12 +20,11 @@ import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.editsupport.EMFFormsEditSupport;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 
-import archive.Register;
-import archive.impl.ArchivePackageImpl;
 import it.naturtalent.emf.model.Activator;
 import it.naturtalent.emf.model.DefaultProjectIDRenderer;
 import it.naturtalent.emf.model.ModelEventKey;
-import it.naturtalent.emf.model.ModelEventKeys;
+import it.naturtalent.archiv.model.archiv.Register;
+import it.naturtalent.archiv.model.archiv.impl.ArchivPackageImpl;
 
 public class RegisterProjectIDRenderer extends DefaultProjectIDRenderer implements ECPProjectContentTouchedObserver
 {
@@ -56,7 +55,7 @@ public class RegisterProjectIDRenderer extends DefaultProjectIDRenderer implemen
 	@Override
 	protected void updateElement()
 	{
-		EAttribute eAttribute = ArchivePackageImpl.eINSTANCE.getRegister_ProjectID();
+		EAttribute eAttribute = ArchivPackageImpl.eINSTANCE.getRegister_ProjectID();
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(register);
 		Command setCommand = SetCommand.create(domain, register, eAttribute,selectedID);
 		if (setCommand.canExecute())

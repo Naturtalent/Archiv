@@ -3,34 +3,26 @@ package it.naturtalent.archiv.ui.actions1;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecp.core.ECPProject;
 import org.eclipse.emf.ecp.spi.ui.util.ECPHandlerHelper;
-import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.ChangeCommand;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
 
-import archive.ArchivePackage;
-import archive.Ordner;
-import archive.impl.ArchivePackageImpl;
+import it.naturtalent.archiv.model.archiv.ArchivPackage;
+import it.naturtalent.archiv.model.archiv.Ordner;
 import it.naturtalent.archiv.ui.Activator;
+import it.naturtalent.archiv.ui.ArchivUtils;
 import it.naturtalent.archiv.ui.dialogs1.OrdnerDialog;
-import it.naturtalent.archiv.ui1.ArchivViewEvent;
 import it.naturtalent.emf.model.ModelEventKey;
-import it.naturtalent.emf.model.ModelEventKeys;
 import it.naturtalent.emf.model.actions.DefaultModelAction;
 import it.naturtalent.icons.core.Icon;
 import it.naturtalent.icons.core.IconSize;
+
 
 public class AddOrdnerAction extends DefaultModelAction
 {
@@ -45,10 +37,10 @@ public class AddOrdnerAction extends DefaultModelAction
 	public void run()
 	{
 		// neuen Ordner erzeugen und im ECPProject speichern 
-		final ECPProject ecpProject = Activator.getECPProject();
-		EClass newMEType  = ArchivePackage.eINSTANCE.getOrdner();
-		EPackage ePackage = newMEType.getEPackage();
-		final EObject eObject = ePackage.getEFactoryInstance().create(newMEType);		
+		final ECPProject ecpProject = ArchivUtils.getArchivProject();
+		EClass newMEType  = ArchivPackage.eINSTANCE.getOrdner();
+		EPackage ePackage = newMEType.getEPackage();	
+		final EObject eObject = ePackage.getEFactoryInstance().create(newMEType);	
 		((Ordner)eObject).setLabel("neuer ordner");
 		ecpProject.getContents().add(eObject);
 		

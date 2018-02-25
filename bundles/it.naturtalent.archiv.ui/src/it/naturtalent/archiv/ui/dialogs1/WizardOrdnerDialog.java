@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
-import archive.Ordner;
+
 
 /**
  * Ordnerdialog benutzt ViewModel 'OrdnerDefault.view' (nur Ordner ohne Register)

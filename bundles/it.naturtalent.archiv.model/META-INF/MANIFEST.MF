@@ -7,15 +7,9 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: archive,
- archive.impl,
- archive.util,
- it.naturtalent.archiv.model.archive,
- it.naturtalent.archiv.model.archive.impl,
- it.naturtalent.archiv.model.archive.util,
- location,
- location.impl,
- location.util
+Export-Package: it.naturtalent.archiv.model.archiv,
+ it.naturtalent.archiv.model.archiv.impl,
+ it.naturtalent.archiv.model.archiv.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  it.wp.common.io

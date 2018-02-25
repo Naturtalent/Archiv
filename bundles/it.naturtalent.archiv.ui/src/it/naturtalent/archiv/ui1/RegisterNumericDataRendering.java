@@ -5,7 +5,6 @@ import javax.inject.Inject;
 import org.eclipse.emf.ecp.view.internal.core.swt.renderer.NumberControlSWTRenderer;
 import org.eclipse.emf.ecp.view.spi.context.ViewModelContext;
 import org.eclipse.emf.ecp.view.spi.model.VControl;
-import org.eclipse.emf.ecp.view.spi.model.VElement;
 import org.eclipse.emf.ecp.view.template.model.VTViewTemplateProvider;
 import org.eclipse.emfforms.spi.common.locale.EMFFormsLocaleProvider;
 import org.eclipse.emfforms.spi.common.report.ReportService;
@@ -18,10 +17,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 
-import archive.Ordner;
-import archive.RegisterType;
-import it.naturtalent.emf.model.Activator;
-import it.naturtalent.emf.model.ModelEventKeys;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.RegisterType;
 
 public class RegisterNumericDataRendering extends NumberControlSWTRenderer
 {

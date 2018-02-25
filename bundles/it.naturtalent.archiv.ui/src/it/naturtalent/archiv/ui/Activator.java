@@ -6,15 +6,9 @@ import org.eclipse.e4.ui.internal.workbench.E4Workbench;
 import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.services.internal.events.EventBroker;
 import org.eclipse.e4.ui.workbench.IWorkbench;
-import org.eclipse.e4.ui.workbench.modeling.EPartService;
-import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.emf.ecp.core.ECPProject;
-import org.eclipse.emf.ecp.core.util.ECPUtil;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-
-import it.naturtalent.emf.model.EMFModelUtils;
-
 
 public class Activator implements BundleActivator
 {
@@ -57,6 +51,7 @@ public class Activator implements BundleActivator
 		Activator.context = null;
 	}
 	
+	/*
 	public static  ECPProject getECPProject()
 	{
 		if(archivProject == null)
@@ -73,6 +68,7 @@ public class Activator implements BundleActivator
 		}
 		return archivProject;
 	}
+	*/
 	
 	public static IEventBroker getEventBroker()
 	{

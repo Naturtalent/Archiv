@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="archive" nsURI="http://www.example.org/archive" nsPrefix="archive">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="archiv" nsURI="http://it.naturtalent/archiv" nsPrefix="archiv">
   <eClassifiers xsi:type="ecore:EClass" name="Register">
     <eOperations name="hasName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eParameters name="chain" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
@@ -18,12 +18,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="alphaData" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Ordner">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="#//EmptyString"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="registers" upperBound="-1"
         eType="#//Register" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="registerType" eType="#//RegisterType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="archiv" eType="#//Archiv"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="RegisterType">
     <eLiterals name="NumericType" value="1" literal="Zahlenregister"/>
@@ -37,6 +36,24 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Archiv">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="location" eType="ecore:EClass ../../it.naturtalent.location.model/model/location.ecore#//Adresse"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ordner" upperBound="-1"
+        eType="#//Ordner" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="adresse" eType="#//Adresse"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Archive">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="archiv" upperBound="-1"
+        eType="#//Archiv" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Adresse">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="strasse" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nummer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="plz" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ort" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Adressen">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="adresse" upperBound="-1"
+        eType="#//Adresse" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

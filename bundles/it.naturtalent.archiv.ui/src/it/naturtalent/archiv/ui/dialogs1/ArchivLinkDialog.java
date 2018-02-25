@@ -36,12 +36,14 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 
-import archive.Archiv;
-import archive.ArchivePackage;
 import it.naturtalent.archiv.ui.Activator;
+import it.naturtalent.archiv.ui.ArchivUtils;
 import it.naturtalent.archiv.ui1.ArchivMessageKeys;
 import it.naturtalent.icons.core.Icon;
 import it.naturtalent.icons.core.IconSize;
+import it.naturtalent.archiv.model.archiv.Archiv;
+import it.naturtalent.archiv.model.archiv.ArchivPackage;
+
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 
@@ -138,7 +140,7 @@ public class ArchivLinkDialog extends TitleAreaDialog
 			public void widgetSelected(SelectionEvent e)
 			{
 				// eine neues Archiv erzeugen				
-				EClass newMEType = ArchivePackage.eINSTANCE.getArchiv();
+				EClass newMEType = ArchivPackage.eINSTANCE.getArchiv();
 				EPackage ePackage = newMEType.getEPackage();
 				Archiv newArchiv = (Archiv) ePackage.getEFactoryInstance().create(newMEType);
 
@@ -150,7 +152,7 @@ public class ArchivLinkDialog extends TitleAreaDialog
 				if(dialog.open() == DefaultEObjectDialog.OK)
 				{
 					// das neue Archiv im Projekt speichern und speichern
-					ECPProject project = Activator.getECPProject();
+					ECPProject project = ArchivUtils.getArchivProject();
 					project.getContents().add(newArchiv);
 					ECPHandlerHelper.saveProject(project);
 					
@@ -192,7 +194,7 @@ public class ArchivLinkDialog extends TitleAreaDialog
 	private void initViewer()
 	{
 		Set<Archiv> archivSet = new HashSet<Archiv>();
-		ECPProject archivProject = Activator.getECPProject();
+		ECPProject archivProject = ArchivUtils.getArchivProject();
 		EList<Object> archivObjects = archivProject.getContents();
 		for(Object archivObject : archivObjects)
 		{

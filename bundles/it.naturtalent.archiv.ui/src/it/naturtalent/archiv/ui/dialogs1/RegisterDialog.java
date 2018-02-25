@@ -1,9 +1,6 @@
 package it.naturtalent.archiv.ui.dialogs1;
 
 import org.apache.commons.lang.StringUtils;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecp.spi.ui.ECPReferenceServiceImpl;
 import org.eclipse.emf.ecp.ui.view.ECPRendererException;
 import org.eclipse.emf.ecp.ui.view.swt.ECPSWTViewRenderer;
@@ -11,7 +8,6 @@ import org.eclipse.emf.ecp.view.spi.context.ViewModelContext;
 import org.eclipse.emf.ecp.view.spi.context.ViewModelContextFactory;
 import org.eclipse.emf.ecp.view.spi.model.VView;
 import org.eclipse.emf.ecp.view.spi.provider.ViewProviderHelper;
-import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -22,18 +18,13 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-import archive.Ordner;
-import archive.Register;
-import archive.RegisterType;
-import it.naturtalent.archiv.ui1.ArchivUtils;
 import it.naturtalent.archiv.ui1.LetterRegisterComposite;
-import it.naturtalent.archiv.ui1.NumericRegisterComposite;
 import it.naturtalent.emf.model.Activator;
 import it.naturtalent.emf.model.ModelEventKey;
-import it.naturtalent.emf.model.ModelEventKeys;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.Register;
 
 public class RegisterDialog extends TitleAreaDialog
 {

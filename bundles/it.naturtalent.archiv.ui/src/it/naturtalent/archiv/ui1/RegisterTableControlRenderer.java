@@ -45,17 +45,17 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventHandler;
 
-import archive.Ordner;
-import archive.Register;
 import it.naturtalent.archiv.ui.Activator;
+import it.naturtalent.archiv.ui.ArchivUtils;
 import it.naturtalent.archiv.ui.actions1.AddRegisterAction;
 import it.naturtalent.archiv.ui.actions1.DeleteArchivAction;
 import it.naturtalent.archiv.ui.actions1.EditRegisterAction;
 import it.naturtalent.archiv.ui.dialogs1.RegisterDialog;
 import it.naturtalent.emf.model.ModelEventKey;
-import it.naturtalent.emf.model.ModelEventKeys;
 import it.naturtalent.icons.core.Icon;
 import it.naturtalent.icons.core.IconSize;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.Register;
 
 public class RegisterTableControlRenderer extends TableControlSWTRenderer
 {
@@ -238,7 +238,7 @@ public class RegisterTableControlRenderer extends TableControlSWTRenderer
 		
 		if (selObject	instanceof Register)
 		{
-			ECPProject ecpProject = Activator.getECPProject();
+			ECPProject ecpProject = ArchivUtils.getArchivProject();
 			Register register = (Register) selObject;			
 			Ordner parentObject = (Ordner) register.eContainer();
 			

@@ -12,7 +12,8 @@ import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.swt.core.AbstractSWTRenderer;
 import org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService;
 
-import archive.ArchivePackage;
+import it.naturtalent.archiv.model.archiv.ArchivPackage;
+
 
 
 /**
@@ -65,7 +66,7 @@ public class RegisterProjectIDRendererService
 		final EStructuralFeature eStructuralFeature = EStructuralFeature.class
 				.cast(valueProperty.getValueType());
 				
-		if (ArchivePackage.eINSTANCE.getRegister_ProjectID().equals(eStructuralFeature))
+		if (ArchivPackage.eINSTANCE.getRegister_ProjectID().equals(eStructuralFeature))
 		{
 			// Prioritylevel des Property 'Tasks'
 			return 20.0;			

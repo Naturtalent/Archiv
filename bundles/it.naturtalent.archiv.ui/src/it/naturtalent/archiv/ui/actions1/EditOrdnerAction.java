@@ -5,14 +5,13 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.widgets.Display;
 
-import archive.Ordner;
-import archive.Register;
 import it.naturtalent.archiv.ui.dialogs1.OrdnerDialog;
 import it.naturtalent.emf.model.ModelEventKey;
-import it.naturtalent.emf.model.ModelEventKeys;
 import it.naturtalent.emf.model.actions.DefaultModelAction;
 import it.naturtalent.icons.core.Icon;
 import it.naturtalent.icons.core.IconSize;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.Register;
 
 public class EditOrdnerAction extends DefaultModelAction
 {

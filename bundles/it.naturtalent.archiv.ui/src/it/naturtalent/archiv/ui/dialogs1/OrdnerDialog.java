@@ -1,8 +1,5 @@
 package it.naturtalent.archiv.ui.dialogs1;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.spi.ui.ECPReferenceServiceImpl;
 import org.eclipse.emf.ecp.ui.view.ECPRendererException;
@@ -22,9 +19,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-
-import archive.Ordner;
-import it.naturtalent.emf.model.EMFModelUtils;
 
 /**
  * Ordnerdialog benutzt ViewModel 'OrdnerDefault.view' (Ordner mit Register)

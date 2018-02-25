@@ -8,14 +8,14 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
-import archive.Archiv;
-import archive.Ordner;
-import archive.Register;
-import archive.RegisterType;
-import it.naturtalent.archiv.ui1.ArchivUtils;
 import it.naturtalent.icons.core.Icon;
 import it.naturtalent.icons.core.IconSize;
-import location.Adresse;
+import it.naturtalent.archiv.model.archiv.Adresse;
+import it.naturtalent.archiv.model.archiv.Archiv;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.Register;
+import it.naturtalent.archiv.model.archiv.RegisterType;
+
 
 public class ArchivViewLabelProvider extends LabelProvider implements IFontProvider		
 {

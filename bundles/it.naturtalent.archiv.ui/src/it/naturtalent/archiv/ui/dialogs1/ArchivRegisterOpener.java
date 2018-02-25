@@ -4,7 +4,8 @@ import org.eclipse.emf.ecp.core.ECPProject;
 import org.eclipse.emf.ecp.ui.util.ECPModelElementOpener;
 import org.eclipse.swt.widgets.Display;
 
-import archive.Register;
+import it.naturtalent.archiv.model.archiv.Register;
+
 
 public class ArchivRegisterOpener implements ECPModelElementOpener
 {

@@ -12,14 +12,15 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.widgets.Display;
 
-import archive.ArchivePackage;
-import archive.Ordner;
-import archive.Register;
-import archive.impl.ArchivePackageImpl;
+
 import it.naturtalent.archiv.ui.dialogs1.RegisterDialog;
 import it.naturtalent.emf.model.ModelEventKey;
 import it.naturtalent.emf.model.ModelEventKeys;
 import it.naturtalent.emf.model.actions.DefaultModelAction;
+import it.naturtalent.archiv.model.archiv.ArchivPackage;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.Register;
+import it.naturtalent.archiv.model.archiv.impl.ArchivPackageImpl;
 
 /**
  * Toolbaraktion einem Ordner ein neues Register hinzufuegen.
@@ -49,7 +50,7 @@ public class AddRegisterAction extends DefaultModelAction
 			if (parentOrdner != null)
 			{
 				// eine neues Register erzeugen
-				EClass newMEType = ArchivePackage.eINSTANCE.getRegister();
+				EClass newMEType = ArchivPackage.eINSTANCE.getRegister();
 				EPackage ePackage = newMEType.getEPackage();				
 				Register register = (Register) ePackage.getEFactoryInstance().create(newMEType);
 				
@@ -66,7 +67,7 @@ public class AddRegisterAction extends DefaultModelAction
 				{
 					// das neue Register via AddCommand dem Modell hinzufuegen
 					EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(parentOrdner);		
-					EReference eReference = ArchivePackageImpl.eINSTANCE.getOrdner_Registers();					
+					EReference eReference = ArchivPackageImpl.eINSTANCE.getOrdner_Registers();					
 					Command addCommand = AddCommand.create(domain, parentOrdner , eReference, register);
 					if(addCommand.canExecute())
 					{

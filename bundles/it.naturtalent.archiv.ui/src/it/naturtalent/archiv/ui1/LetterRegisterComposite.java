@@ -23,8 +23,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import archive.Ordner;
-import archive.Register;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.Register;
+
 
 public class LetterRegisterComposite extends Composite
 {
@@ -77,7 +78,7 @@ public class LetterRegisterComposite extends Composite
 		String [] alphaArray = getArchivLetters(ordner);
 		if(ArrayUtils.isNotEmpty(alphaArray))
 		{
-			for(char c = 'A';c < 'Z';c++)
+			for(char c = 'A';c <= 'Z';c++)
 			{				
 				if(!ArrayUtils.contains(alphaArray, String.valueOf(c)))
 					return String.valueOf(c);

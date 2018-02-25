@@ -2,7 +2,9 @@ package it.naturtalent.archiv.ui.dialogs1;
 
 import org.eclipse.emf.ecp.ui.util.ECPModelElementOpenTester;
 
-import archive.Register;
+import it.naturtalent.archiv.model.archiv.Register;
+
+
 
 
 public class ArchivRegisterOpenerTester implements ECPModelElementOpenTester

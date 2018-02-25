@@ -6,6 +6,8 @@ public class Messages extends NLS
 {
 	private static final String BUNDLE_NAME = "it.naturtalent.archiv.ui.messages"; //$NON-NLS-1$
 
+	public static String ArchivImportDialog_ImportError;
+
 	public static String ArchivDetailsComposite_TitleArchivDetails;
 
 	public static String ArchivDetailsComposite_TitleOrdner;
@@ -30,6 +32,11 @@ public class Messages extends NLS
 	public static String ExportArchivAction_Qverwrite;
 	public static String ArchivProjectPropertyWizardPage2_sctnNewSection_text;
 	
+	public static String SelectRegisterAction_RegisterMessage;
+	public static String SelectRegisterAction_InfoRegisterMessage;
+
+	public static String SelectRegisterAction_RegisterTitle;
+
 	static
 	{
 		// initialize resource bundle

@@ -3,9 +3,6 @@ package it.naturtalent.archiv.ui1;
 import javax.inject.Inject;
 
 import org.eclipse.core.databinding.Binding;
-import org.eclipse.core.databinding.observable.value.IObservableValue;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.impl.EReferenceImpl;
 import org.eclipse.emf.ecp.view.spi.context.ViewModelContext;
 import org.eclipse.emf.ecp.view.spi.core.swt.SimpleControlSWTControlSWTRenderer;
 import org.eclipse.emf.ecp.view.spi.model.VControl;
@@ -22,9 +19,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 
-import archive.Archiv;
-import location.Adresse;
-import location.LocationPackage;
+import it.naturtalent.archiv.model.archiv.Archiv;
 
 
 public class LocationAddressLinkRenderer extends SimpleControlSWTControlSWTRenderer

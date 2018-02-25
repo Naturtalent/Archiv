@@ -10,13 +10,13 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 
-import archive.Ordner;
-import archive.Register;
-import archive.RegisterType;
-import archive.impl.ArchivePackageImpl;
 import it.naturtalent.archiv.ui.Activator;
 import it.naturtalent.emf.model.ModelEventKey;
 import it.naturtalent.emf.model.ModelEventKeys;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.Register;
+import it.naturtalent.archiv.model.archiv.RegisterType;
+import it.naturtalent.archiv.model.archiv.impl.ArchivPackageImpl;
 
 public class ArchivUtils
 {
@@ -29,7 +29,7 @@ public class ArchivUtils
 	{
 		if (childRegister instanceof Register)
 		{
-			EList<Object> archivObjects = Activator.getECPProject().getContents();
+			EList<Object> archivObjects = it.naturtalent.archiv.ui.ArchivUtils.getArchivProject().getContents();
 			for (Object archivObject : archivObjects)
 			{
 				if (archivObject instanceof Ordner)
@@ -74,7 +74,7 @@ public class ArchivUtils
 					if (oldParentOrdner != null)
 					{
 						EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(oldParentOrdner);		
-						EReference eReference = ArchivePackageImpl.eINSTANCE.getOrdner_Registers();					
+						EReference eReference = ArchivPackageImpl.eINSTANCE.getOrdner_Registers();					
 						Command delCommand = DeleteCommand.create(domain, childRegister);
 						if(delCommand.canExecute())
 							domain.getCommandStack().execute(delCommand);
@@ -85,7 +85,7 @@ public class ArchivUtils
 					// Register hinzufuegen
 					autoSetRegisterTypeData(newParentOrdner, childRegister);
 					EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(newParentOrdner);		
-					EReference eReference = ArchivePackageImpl.eINSTANCE.getOrdner_Registers();					
+					EReference eReference = ArchivPackageImpl.eINSTANCE.getOrdner_Registers();					
 					Command addCommand = AddCommand.create(domain, newParentOrdner , eReference, childRegister);
 					if(addCommand.canExecute())
 						domain.getCommandStack().execute(addCommand);

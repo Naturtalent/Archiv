@@ -1,8 +1,5 @@
 package it.naturtalent.archiv.ui.dialogs1;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.emf.ecp.ui.view.ECPRendererException;
 import org.eclipse.emf.ecp.ui.view.swt.ECPSWTViewRenderer;
 import org.eclipse.emf.ecp.view.spi.context.ViewModelContext;
@@ -19,19 +16,16 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-import archive.Ordner;
-import archive.Register;
-import archive.RegisterType;
-import it.naturtalent.archiv.ui1.ArchivUtils;
 import it.naturtalent.archiv.ui1.LetterRegisterComposite;
 import it.naturtalent.archiv.ui1.Messages;
 import it.naturtalent.archiv.ui1.NumericRegisterComposite;
 import it.naturtalent.emf.model.Activator;
 import it.naturtalent.emf.model.ModelEventKey;
-import it.naturtalent.emf.model.ModelEventKeys;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.Register;
+import it.naturtalent.archiv.model.archiv.RegisterType;
 
 /**
  * Registerdialog modifiziert fuer die Wizardeingabe. 

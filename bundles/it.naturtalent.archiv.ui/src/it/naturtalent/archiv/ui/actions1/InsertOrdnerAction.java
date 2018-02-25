@@ -4,12 +4,12 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 
-import archive.Ordner;
-import archive.Register;
 import it.naturtalent.archiv.ui1.ArchivUtils;
 import it.naturtalent.emf.model.actions.DefaultModelAction;
 import it.naturtalent.icons.core.Icon;
 import it.naturtalent.icons.core.IconSize;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.Register;
 
 /**
  * Aktion fuegt einem Ordner ein Register hinzu.

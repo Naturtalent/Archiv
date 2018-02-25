@@ -5,6 +5,7 @@ import org.eclipse.emf.ecp.spi.ui.util.ECPHandlerHelper;
 import org.eclipse.jface.viewers.StructuredViewer;
 
 import it.naturtalent.archiv.ui.Activator;
+import it.naturtalent.archiv.ui.ArchivUtils;
 import it.naturtalent.emf.model.ModelEventKey;
 import it.naturtalent.emf.model.ModelEventKeys;
 import it.naturtalent.emf.model.actions.DefaultModelAction;
@@ -24,7 +25,7 @@ public class SaveAction extends DefaultModelAction
 	//@Override
 	public void run()
 	{		
-		ECPHandlerHelper.saveProject(Activator.getECPProject());
+		ECPHandlerHelper.saveProject(ArchivUtils.getArchivProject());
 
 		EObject eObject = geteObject();
 		if(eObject != null)

@@ -6,16 +6,17 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.widgets.Display;
 
-import archive.Ordner;
-import archive.Register;
+
 import it.naturtalent.archiv.ui.Activator;
+import it.naturtalent.archiv.ui.ArchivUtils;
 import it.naturtalent.archiv.ui.dialogs1.WizardOrdnerDialog;
 import it.naturtalent.archiv.ui.dialogs1.WizardRegisterDialog;
-import it.naturtalent.archiv.ui1.ArchivUtils;
 import it.naturtalent.archiv.ui1.ArchivViewEvent;
 import it.naturtalent.emf.model.actions.DefaultModelAction;
 import it.naturtalent.icons.core.Icon;
 import it.naturtalent.icons.core.IconSize;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.Register;
 
 public class WizardRegisterAction extends DefaultModelAction
 {
@@ -35,7 +36,7 @@ public class WizardRegisterAction extends DefaultModelAction
 	@Override
 	public void run()
 	{		
-		ECPProject ecpProject = Activator.getECPProject();
+		ECPProject ecpProject = ArchivUtils.getArchivProject();
 					
 		if (eObject	instanceof Register)
 		{

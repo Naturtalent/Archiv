@@ -1,29 +1,23 @@
 <?xml version="1.0" encoding="ASCII"?>
-<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/170" xmlns:org.eclipse.emf.ecp.view.table.model="http://org/eclipse/emf/ecp/view/table/model/150" xmi:id="_0BX5QP9sEeWr9M_x1uru3Q" name="OrdnerMitRegister" ecorePath="/it.naturtalent.archiv.model/model/archiv.ecore">
-  <rootEClass href="http://www.example.org/archive#//Ordner"/>
-  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_0BfOAP9sEeWr9M_x1uru3Q" name="Control label" labelAlignment="Left">
-    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_0BfOAf9sEeWr9M_x1uru3Q">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.example.org/archive#//Ordner/label"/>
-    </domainModelReference>
-  </children>
-  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_0BfOAv9sEeWr9M_x1uru3Q" name="Control registerType" labelAlignment="Left">
-    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_0BfOA_9sEeWr9M_x1uru3Q">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.example.org/archive#//Ordner/registerType"/>
-    </domainModelReference>
-  </children>
-  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_0BfOBP9sEeWr9M_x1uru3Q" name="Control archiv" labelAlignment="Left">
-    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_0BfOBf9sEeWr9M_x1uru3Q">
-      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.example.org/archive#//Ordner/archiv"/>
-    </domainModelReference>
-  </children>
-  <children xsi:type="org.eclipse.emf.ecp.view.table.model:TableControl" xmi:id="_0BfOBv9sEeWr9M_x1uru3Q" labelAlignment="Left">
-    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.table.model:TableDomainModelReference" xmi:id="_0BfOB_9sEeWr9M_x1uru3Q">
-      <columnDomainModelReferences xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_0BfOCP9sEeWr9M_x1uru3Q">
-        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.example.org/archive#//Register/label"/>
-      </columnDomainModelReferences>
-      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_0BfOCf9sEeWr9M_x1uru3Q">
-        <domainModelEFeature xsi:type="ecore:EReference" href="http://www.example.org/archive#//Ordner/registers"/>
-      </domainModelReference>
-    </domainModelReference>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.group.model="http://org/eclipse/emf/ecp/view/group/model" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/170" xmlns:org.eclipse.emf.ecp.view.vertical.model="http://org/eclipse/emf/ecp/view/vertical/model" xmi:id="_CUYK0P1sEeeEjYRUfX0ksA" name="Ordner" ecorePath="/Archiv_bundles/it.naturtalent.archiv.model/model/archiv.ecore">
+  <rootEClass href="http://it.naturtalent/archiv#//Ordner"/>
+  <children xsi:type="org.eclipse.emf.ecp.view.vertical.model:VerticalLayout" xmi:id="_FbxzsP-oEeeYVNmhHaNxMQ">
+    <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_GXIBoP-oEeeYVNmhHaNxMQ">
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_CWcnYP1sEeeEjYRUfX0ksA" name="Control label">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_CWdOcP1sEeeEjYRUfX0ksA">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://it.naturtalent/archiv#//Ordner/label"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_CWdOc_1sEeeEjYRUfX0ksA" name="Control registerType">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_CWdOdP1sEeeEjYRUfX0ksA">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://it.naturtalent/archiv#//Ordner/registerType"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_CWdOcf1sEeeEjYRUfX0ksA" name="Control registers">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_CWdOcv1sEeeEjYRUfX0ksA">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://it.naturtalent/archiv#//Ordner/registers"/>
+        </domainModelReference>
+      </children>
+    </children>
   </children>
 </org.eclipse.emf.ecp.view.model:View>

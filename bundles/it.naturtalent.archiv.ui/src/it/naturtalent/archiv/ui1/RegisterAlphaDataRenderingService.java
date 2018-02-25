@@ -12,7 +12,8 @@ import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.swt.core.AbstractSWTRenderer;
 import org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService;
 
-import archive.ArchivePackage;
+import it.naturtalent.archiv.model.archiv.ArchivPackage;
+
 
 
 /**
@@ -64,7 +65,7 @@ public class RegisterAlphaDataRenderingService
 		final EStructuralFeature eStructuralFeature = EStructuralFeature.class
 				.cast(valueProperty.getValueType());
 				
-		if (ArchivePackage.eINSTANCE.getRegister_NumericData().equals(eStructuralFeature))
+		if (ArchivPackage.eINSTANCE.getRegister_NumericData().equals(eStructuralFeature))
 		{
 			return 20.0;			
 		}

@@ -27,15 +27,17 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventHandler;
 
-import archive.Ordner;
-import archive.Register;
 import it.naturtalent.archiv.ui.Activator;
+import it.naturtalent.archiv.ui.ArchivUtils;
 import it.naturtalent.archiv.ui.actions1.AddOrdnerAction;
 import it.naturtalent.archiv.ui.actions1.DeleteArchivAction;
 import it.naturtalent.archiv.ui.actions1.EditOrdnerAction;
 import it.naturtalent.archiv.ui1.ArchivViewEvent;
 import it.naturtalent.archiv.ui1.RegisterTypeSorter;
 import it.naturtalent.emf.model.actions.DefaultModelActionDistributor;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.Register;
+
 import org.eclipse.swt.events.TreeAdapter;
 import org.eclipse.swt.events.TreeEvent;
 
@@ -189,7 +191,7 @@ public class ArchivView
 		treeViewer.setLabelProvider(new ArchivViewLabelProvider());
 		treeViewer.setSorter(registerTypeSorter);		
 		
-		treeViewer.setInput(Activator.getECPProject());
+		treeViewer.setInput(ArchivUtils.getArchivProject());
 		
 		eventBroker = Activator.getEventBroker();
 		eventBroker.subscribe(ArchivViewEvent.ARCHIV_VIEWEVENT+"*", archivViewHandler);

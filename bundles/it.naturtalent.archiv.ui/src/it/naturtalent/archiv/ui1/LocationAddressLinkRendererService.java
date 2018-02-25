@@ -14,8 +14,8 @@ import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.swt.core.AbstractSWTRenderer;
 import org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService;
 
-import archive.ArchivePackage;
-import location.LocationPackage;
+import it.naturtalent.archiv.model.archiv.ArchivPackage;
+
 
 public class LocationAddressLinkRendererService implements EMFFormsDIRendererService<VControl>
 {
@@ -59,9 +59,9 @@ public class LocationAddressLinkRendererService implements EMFFormsDIRendererSer
 			EReferenceImpl reference = (EReferenceImpl) eStructuralFeature;
 			
 			Object obj = reference.getEReferenceType();
-			Object obj1 = LocationPackage.eINSTANCE.getAdresse();
+			Object obj1 = ArchivPackage.eINSTANCE.getAdresse();
 			
-			if(LocationPackage.eINSTANCE.getAdresse().equals(reference.getEReferenceType()))
+			if(ArchivPackage.eINSTANCE.getAdresse().equals(reference.getEReferenceType()))
 				return 10;
 		}
 		

@@ -13,7 +13,9 @@ import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.swt.core.AbstractSWTRenderer;
 import org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService;
 
-import archive.ArchivePackage;
+import it.naturtalent.archiv.model.archiv.ArchivPackage;
+
+
 
 public class RegisterTableControlRendererService implements EMFFormsDIRendererService<VTableControl>
 {
@@ -52,7 +54,7 @@ public class RegisterTableControlRendererService implements EMFFormsDIRendererSe
 		final EStructuralFeature eStructuralFeature = EStructuralFeature.class
 				.cast(valueProperty.getValueType());
 				
-		if (ArchivePackage.eINSTANCE.getOrdner_Registers().equals(eStructuralFeature))
+		if (ArchivPackage.eINSTANCE.getOrdner_Registers().equals(eStructuralFeature))
 		{
 			// Prioritylevel 
 			return 12;

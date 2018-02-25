@@ -16,12 +16,12 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 
-import archive.Archiv;
 import it.naturtalent.archiv.ui.dialogs1.DefaultEObjectDialog;
 import it.naturtalent.icons.core.Icon;
 import it.naturtalent.icons.core.IconSize;
-import location.Adresse;
-import location.LocationPackage;
+import it.naturtalent.archiv.model.archiv.Archiv;
+import it.naturtalent.archiv.model.archiv.ArchivPackage;
+
 
 public class LocationAddressLinkComposite extends Composite
 {
@@ -77,16 +77,18 @@ public class LocationAddressLinkComposite extends Composite
 			public void widgetSelected(SelectionEvent e)
 			{
 				// eine neues Adressobjekt erzeugen
-				EClass newMEType = (EClass) LocationPackage.eINSTANCE.getAdresse();
+				EClass newMEType = (EClass) ArchivPackage.eINSTANCE.getAdresse();
 				EPackage ePackage = newMEType.getEPackage();
 				EObject eObject = ePackage.getEFactoryInstance().create(newMEType);
 				
+				/*
 				DefaultEObjectDialog dialog = new DefaultEObjectDialog(parent.getShell(), eObject);
 				dialog.create();
 				dialog.setTitle("Archivstandort");
 				dialog.setMessage("Standort über eine Adresse definieren");
 				if(dialog.open() == DefaultEObjectDialog.OK)
-					((Archiv)eObject).setLocation((Adresse)eObject);
+					((Archiv)eObject).setAdresse((Adresse)eObject);
+					*/
 			}
 		});
 		toolkit.adapt(btnAdd, true, true);

@@ -14,16 +14,17 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.widgets.Display;
 
-import archive.Ordner;
-import archive.Register;
 import it.naturtalent.archiv.ui.Activator;
+import it.naturtalent.archiv.ui.ArchivUtils;
 import it.naturtalent.archiv.ui1.ArchivViewEvent;
 import it.naturtalent.emf.model.ModelEventKey;
 import it.naturtalent.emf.model.ModelEventKeys;
 import it.naturtalent.emf.model.actions.DefaultModelAction;
 import it.naturtalent.icons.core.Icon;
 import it.naturtalent.icons.core.IconSize;
-import location.Adresse;
+import it.naturtalent.archiv.model.archiv.Adresse;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.Register;
 
 public class DeleteArchivAction extends DefaultModelAction
 {
@@ -43,7 +44,7 @@ public class DeleteArchivAction extends DefaultModelAction
 			Ordner ordner = (Ordner) eObject;
 			if(MessageDialog.openQuestion(Display.getDefault().getActiveShell(), "Ordner Löschen", ordner.getLabel()+ " löschen ?"))
 			{				
-				ECPProject ecpProject = Activator.getECPProject();
+				ECPProject ecpProject = ArchivUtils.getArchivProject();
 				EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(ecpProject);
 				Command delCommand = DeleteCommand.create(domain, ordner);
 				if(delCommand.canExecute())
@@ -78,9 +79,9 @@ public class DeleteArchivAction extends DefaultModelAction
 		
 		if (eObject	instanceof Adresse)
 		{
-			 EList<Object>elements = Activator.getECPProject().getContents();
+			 EList<Object>elements = ArchivUtils.getArchivProject().getContents();
 			 elements.remove(eObject);
-			 ECPHandlerHelper.saveProject(Activator.getECPProject());
+			 ECPHandlerHelper.saveProject(ArchivUtils.getArchivProject());
 			 Object [] data = new Object[]{eObject, null};					
 			 Activator.getEventBroker().post(ArchivViewEvent.ARCHIV_VIEWEVENT_REMOVEORDNER, data);
 		}		

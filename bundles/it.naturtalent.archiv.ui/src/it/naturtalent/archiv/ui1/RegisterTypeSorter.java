@@ -3,8 +3,10 @@ package it.naturtalent.archiv.ui1;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
 
-import archive.Ordner;
-import archive.Register;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.Register;
+
+
 
 public class RegisterTypeSorter extends ViewerSorter
 {

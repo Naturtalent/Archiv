@@ -9,16 +9,8 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated archiv -->
       <package
-            uri="http://www.example.org/archive"
-            class="archive.ArchivePackage"
-            genModel="model/archiv.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated archiv -->
-      <package
-            uri="http://it.naturtalent/location"
-            class="location.LocationPackage"
+            uri="http://it.naturtalent/archiv"
+            class="it.naturtalent.archiv.model.archiv.ArchivPackage"
             genModel="model/archiv.genmodel"/>
    </extension>
 

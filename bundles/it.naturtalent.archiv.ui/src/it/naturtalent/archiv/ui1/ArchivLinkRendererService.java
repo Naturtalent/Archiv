@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.impl.EReferenceImpl;
 import org.eclipse.emf.ecp.view.spi.context.ViewModelContext;
 import org.eclipse.emf.ecp.view.spi.model.VControl;
 import org.eclipse.emf.ecp.view.spi.model.VElement;
-import org.eclipse.emf.ecp.view.spi.table.model.VTableControl;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedException;
 import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedReport;
@@ -14,8 +13,7 @@ import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.swt.core.AbstractSWTRenderer;
 import org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService;
 
-import archive.ArchivePackage;
-import location.LocationPackage;
+import it.naturtalent.archiv.model.archiv.ArchivPackage;
 
 public class ArchivLinkRendererService implements EMFFormsDIRendererService<VControl>
 {
@@ -57,7 +55,7 @@ public class ArchivLinkRendererService implements EMFFormsDIRendererService<VCon
 		if(eStructuralFeature instanceof EReferenceImpl)
 		{
 			EReferenceImpl reference = (EReferenceImpl) eStructuralFeature;
-			if(ArchivePackage.eINSTANCE.getArchiv().equals(reference.getEReferenceType()))
+			if(ArchivPackage.eINSTANCE.getArchiv().equals(reference.getEReferenceType()))
 				return 10;
 		}
 		

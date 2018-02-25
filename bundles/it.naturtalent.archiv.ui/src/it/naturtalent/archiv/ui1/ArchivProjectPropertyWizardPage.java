@@ -24,9 +24,8 @@ import org.eclipse.swt.events.TreeAdapter;
 import org.eclipse.swt.events.TreeEvent;
 import org.eclipse.swt.widgets.Composite;
 
-import archive.Ordner;
-import archive.Register;
 import it.naturtalent.archiv.ui.Activator;
+import it.naturtalent.archiv.ui.ArchivUtils;
 import it.naturtalent.archiv.ui.actions1.AddOrdnerAction;
 import it.naturtalent.archiv.ui.actions1.DeleteArchivAction;
 import it.naturtalent.archiv.ui.actions1.EditOrdnerAction;
@@ -36,6 +35,8 @@ import it.naturtalent.archiv.ui.parts1.ArchivViewLabelProvider;
 import it.naturtalent.emf.model.actions.DefaultModelAction;
 import it.naturtalent.emf.model.actions.DefaultModelActionDistributor;
 import it.naturtalent.emf.model.parts.DefaultMasterComposite;
+import it.naturtalent.archiv.model.archiv.Ordner;
+import it.naturtalent.archiv.model.archiv.Register;
 
 
 /**
@@ -115,7 +116,7 @@ public class ArchivProjectPropertyWizardPage extends WizardPage
 		masterViewer.setContentProvider(new ArchivViewContentProvider());
 		masterViewer.setLabelProvider(archivViewLabelProvider);
 		archivViewLabelProvider.setSelectedRegister(register);
-		masterViewer.setInput(Activator.getECPProject());
+		masterViewer.setInput(ArchivUtils.getArchivProject());
 		masterViewer.setSorter(registerTypeSorter);		
 		setControl(masterComposite.getSctnMaster());
 		
@@ -133,7 +134,7 @@ public class ArchivProjectPropertyWizardPage extends WizardPage
 					masterViewer.collapseAll();
 					
 					//insertRegister(ordner, register);
-					ArchivUtils.autoAddRegister(ordner, register);
+					//ArchivUtils.autoAddRegister(ordner, register);
 					
 					masterViewer.setExpandedState(ordner, true);
 					

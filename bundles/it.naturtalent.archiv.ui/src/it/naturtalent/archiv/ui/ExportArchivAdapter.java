@@ -3,7 +3,7 @@ package it.naturtalent.archiv.ui;
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.graphics.Image;
 
-
+import it.naturtalent.archiv.ui.action.ArchivExportAction;
 import it.naturtalent.e4.project.IExportAdapter;
 
 public class ExportArchivAdapter implements IExportAdapter
@@ -37,9 +37,8 @@ public class ExportArchivAdapter implements IExportAdapter
 
 	@Override
 	public Action getExportAction()
-	{		
-		//return new ExportArchivAction();
-		return null;
+	{				
+		return new ArchivExportAction();
 	}
 
 }

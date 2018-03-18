@@ -3,6 +3,7 @@
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_H6lsINVKEeO9sqd9lLiHmA" featurename="children" parentElementId="it.naturtalent.e4.project.ui.partstack.1">
     <elements xsi:type="basic:Part" xmi:id="_mmqZEP3YEeeFUsK2JYpXQw" elementId="it.naturtalent.archiv.ui.part.archive" contributionURI="bundleclass://it.naturtalent.archiv.ui/it.naturtalent.archiv.ui.parts.ArchivView" label="Archive" iconURI="icon://ICON_PROJECT">
       <toolbar xmi:id="_thd7oAQFEeiqb8xwexTRng" elementId="it.naturtalent.archiv.ui.toolbar.0">
+        <children xsi:type="menu:DirectToolItem" xmi:id="_hWR1ECRaEeiYQZ3_k3kceA" elementId="it.naturtalent.archiv.ui.directtoolitem.sync" label="sync Projekt" iconURI="icon://ICON_SYNC" tooltip="das gekoppelte Projekt ausw&#xe4;hlen" contributionURI="bundleclass://it.naturtalent.archiv.ui/it.naturtalent.archiv.ui.action.SyncAction"/>
         <children xsi:type="menu:DirectToolItem" xmi:id="_y7I5kAQGEeiqb8xwexTRng" elementId="it.naturtalent.archiv.ui.directtoolitem.undo" label="undo" iconURI="icon://COMMAND_UNDO" tooltip="vorherige Eingaben zur&#xfc;cknehmen" contributionURI="bundleclass://it.naturtalent.archiv.ui/it.naturtalent.archiv.ui.action.UndoAction"/>
         <children xsi:type="menu:DirectToolItem" xmi:id="_0vqnsAQFEeiqb8xwexTRng" elementId="it.naturtalent.archiv.ui.directtoolitem.speichern" label="speichern" iconURI="icon://COMMAND_SAVE" tooltip="die momentanen Daten festschreiben" contributionURI="bundleclass://it.naturtalent.archiv.ui/it.naturtalent.archiv.ui.action.SaveAction"/>
       </toolbar>

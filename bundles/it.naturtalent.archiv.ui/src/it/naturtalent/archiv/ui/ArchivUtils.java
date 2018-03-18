@@ -25,11 +25,21 @@ public class ArchivUtils
 	
 	// Name des ECP Projekts indem die ArchivDaten gespeichert werden
 	public final static String ARCHIVPROJECTNAME = "ArchivEMFProject";
-	
-	//public final static String SELECT_ARCHIV_EVENT = "selectArchivEvent";
+		
+	public final static String SELECT_ARCHIV_REQUEST = "selectArchivRequest";
 	public final static String SELECT_REGISTER_REQUEST = "selectRegisterRequest";
 	
-	public final static String REGISTER_SELECTION_EVENT = "selectRegisterEvent";
+	//MasterTreeRefreshing erforderlich z.B. nach Aenderung des RegisterTypes im Ordner
+	public final static String REFRESH_MASTER_REQUEST = "refreshmasterrequest";
+	
+	//einen Ordner selektieren
+	public final static String SELECT_ORDNER_REQUEST = "selectordnerrequest";
+	
+	// Im MasterTree hat eine Selektion stattgefunden
+	public final static String ARCHIVE_SELECTION_EVENT = "archiveselectionevent";
+	
+	// Ecore Model Definition - Attribute in Ordner
+	public final static String FEATURE_REGISTERTYPE = "registerType";
 	
 	private static Archive archive;
 		
@@ -98,7 +108,7 @@ public class ArchivUtils
 	}
 	
 	/**
-	 * In allen Archiven nach einem Register suchen, dass einem IProject zugeordnet ist.
+	 * In allen Archiven nach einem Register suchen, dass mit einem Project gekoppelt ist
 	 * 
 	 * @param iProjectID
 	 * @return

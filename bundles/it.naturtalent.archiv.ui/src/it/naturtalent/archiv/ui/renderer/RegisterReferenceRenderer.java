@@ -30,7 +30,7 @@ import it.naturtalent.archiv.ui.ArchivUtils;
 /**
  * Modifizierter Renderer 
  * 
- * - informiert ueber die selektierten Register
+ * - informiert ueber die selektierten Register im DetailsView
  * 
  * @author dieter
  *
@@ -74,7 +74,7 @@ public class RegisterReferenceRenderer extends MultiReferenceSWTRenderer
 				// die Selektionen im SelectionService veroeffentlichen
 				Object tableSelected = ((IStructuredSelection) event.getSelection()).getFirstElement();	
 				eSelectionService.setSelection(tableSelected);	
-				eventBroker.post(ArchivUtils.REGISTER_SELECTION_EVENT, tableSelected);
+				eventBroker.post(ArchivUtils.ARCHIVE_SELECTION_EVENT, tableSelected);
 			}
 		});
 		

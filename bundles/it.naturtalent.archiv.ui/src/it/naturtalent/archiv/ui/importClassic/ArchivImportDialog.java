@@ -190,8 +190,7 @@ public class ArchivImportDialog extends AbstractImportDialog
 							// speichern
 							List<INtProjectPropertyFactory> ntProjectPropertiesFactories = NtProjektPropertyUtils
 									.getProjectPropertyFactories(
-											ntProjektDataFactoryRepository,
-											iProject);
+											ntProjektDataFactoryRepository,iProject);
 							ntProjectPropertiesFactories
 									.add(new ArchivProjectPropertyFactory());
 							NtProjektPropertyUtils.saveProjectPropertyFactories(

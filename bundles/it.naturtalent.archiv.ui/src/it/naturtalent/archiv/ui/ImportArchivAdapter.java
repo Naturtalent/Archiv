@@ -1,10 +1,17 @@
 package it.naturtalent.archiv.ui;
 
+import it.naturtalent.archiv.ui.action.ArchivImportAction;
 import it.naturtalent.e4.project.IImportAdapter;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.graphics.Image;
 
+/**
+ * Mit diesem Adapter wird die Import-Funktionalitaet in der Application angemeldet
+ * 
+ * @author dieter
+ *
+ */
 public class ImportArchivAdapter implements IImportAdapter
 {
 
@@ -37,8 +44,7 @@ public class ImportArchivAdapter implements IImportAdapter
 	@Override
 	public Action getImportAction()
 	{		
-		//return new ImportArchivAction();
-		return null;
+		return new ArchivImportAction();
 	}
 
 }

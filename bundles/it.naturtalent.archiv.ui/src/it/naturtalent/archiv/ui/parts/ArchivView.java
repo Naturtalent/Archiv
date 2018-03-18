@@ -1,6 +1,7 @@
 
 package it.naturtalent.archiv.ui.parts;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EventObject;
 import java.util.List;
@@ -21,12 +22,18 @@ import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecp.core.ECPProjectManager;
 import org.eclipse.emf.ecp.ui.view.ECPRendererException;
 import org.eclipse.emf.ecp.ui.view.swt.ECPSWTViewRenderer;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.CreateChildCommand;
+import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -43,6 +50,7 @@ import it.naturtalent.archiv.ui.ArchivUtils;
 import it.naturtalent.archiv.ui.PartListenerAdapter;
 import it.naturtalent.archiv.ui.action.SaveAction;
 import it.naturtalent.e4.project.ui.Activator;
+import it.naturtalent.e4.project.ui.parts.emf.NtProjectView;
 
 
 
@@ -54,14 +62,15 @@ public class ArchivView
 	
 	@Inject @Optional public EModelService modelService;
 	@Inject @Optional public EPartService partService;
+	@Inject @Optional public IEventBroker eventBroker;
 
 	
 	public final static String ARCHIVVIEW_ID = "it.naturtalent.archiv.ui.part.archive";
 	
-	private final static String FEATURE_REGISTERTYPE = "registerType";
-	
+	// in 'fragment.e4xmi' definiert
 	public static final String SAVE_TOOLBAR_ID = "it.naturtalent.archiv.ui.directtoolitem.speichern";
 	public static final String UNDO_TOOLBAR_ID = "it.naturtalent.archiv.ui.directtoolitem.undo";
+	public static final String SYNC_TOOLBAR_ID = "it.naturtalent.archiv.ui.directtoolitem.sync";
 
 	
 	// vom Renderer erzeugter Master-TreeViewer
@@ -83,21 +92,28 @@ public class ArchivView
 							
 			if(command instanceof SetCommand)				
 			{
-				// Register wurde geandert
+				// Aenderugen im Modell
 				EStructuralFeature eStructuralFeature = ((SetCommand) command).getFeature();					
-				if(StringUtils.equals(eStructuralFeature.getName(), FEATURE_REGISTERTYPE))
+				if(StringUtils.equals(eStructuralFeature.getName(), ArchivUtils.FEATURE_REGISTERTYPE))
 				{
-					// der RegisterTyp des Ordners wurde geandert - Ordner durch Selektion updaten
-					treeViewer.refresh();
-					treeViewer.setSelection(new StructuredSelection(ordner));
+					// RegisterTyp geaendert -> Refresh MasterTree (Ordner)
+					List<Object> result = new ArrayList<Object>();
+					result.addAll(command.getResult());
+					eventBroker.post(ArchivUtils.REFRESH_MASTER_REQUEST, result.get(0));
+					
+					// Ordner selektieren
+					eventBroker.post(ArchivUtils.SELECT_ORDNER_REQUEST, result.get(0));					
 				}
 				
 				// Toolbarstatus updaten
 				MPart mPart = partService.findPart(ARCHIVVIEW_ID);
+				
+				// save - Toolbar
 				List<MToolItem> items = modelService.findElements(mPart, SAVE_TOOLBAR_ID, MToolItem.class,null, EModelService.IN_PART);
 				MToolItem item = items.get(0);
 				item.setEnabled(true);
 				
+				// undo - Toolbar
 				items = modelService.findElements(mPart, UNDO_TOOLBAR_ID, MToolItem.class,null, EModelService.IN_PART);
 				item = items.get(0);
 				item.setEnabled(true);					
@@ -157,9 +173,37 @@ public class ArchivView
 					}
 				}					
 			}
+			
+			if(command instanceof DeleteCommand)				
+			{
+				updateUNDOSAVEToolbar();
+				
+				// NtProjectView aktualisieren
+				Archive archive = ArchivUtils.getArchive();
+				eventBroker.post(NtProjectView.UPDATE_PROJECTVIEW_REQUEST, archive);
+			}
 		}
 	}
 	private ArchivCommandStackListener archivCommandStackListener = new ArchivCommandStackListener();
+	
+	/*
+	 * Status der Toolbar (undo/save) aktualisieren
+	 */
+	private void updateUNDOSAVEToolbar()
+	{
+		// Toolbarstatus updaten
+		MPart mPart = partService.findPart(ARCHIVVIEW_ID);
+
+		// save - Toolbar
+		List<MToolItem> items = modelService.findElements(mPart, SAVE_TOOLBAR_ID, MToolItem.class,null, EModelService.IN_PART);
+		MToolItem item = items.get(0);
+		item.setEnabled(true);
+		
+		// undo - Toolbar
+		items = modelService.findElements(mPart, UNDO_TOOLBAR_ID, MToolItem.class,null, EModelService.IN_PART);
+		item = items.get(0);
+		item.setEnabled(true);
+	}
 	
 	
 	// Focus lost Listener
@@ -169,9 +213,13 @@ public class ArchivView
 				public void partDeactivated(MPart part)
 				{
 					// bei Focusverlust Aenderungen festschreiben
+					ArchivUtils.getArchivProject().saveContents();
+					
+					/*
 					SaveAction saveAction = new SaveAction();
 					if(saveAction.canExecute())
 						saveAction.execute(modelService, part);
+						*/
 				}		
 			};
 	
@@ -226,6 +274,13 @@ public class ArchivView
 	}
 	
 	
+	/**
+	 * Eine Selektion ausserhalb des Registers fuehrt zum Festschreiben der aktuellen Daten.
+	 * 
+	 * @param object
+	 * @param modelService
+	 * @param part
+	 */
 	@Inject
 	public void handleSelection(
 			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional Object object,

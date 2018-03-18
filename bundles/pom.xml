@@ -14,6 +14,9 @@
 
 	<modules>
 		<module>it.naturtalent.archiv.model</module>
+		<module>it.naturtalent.archiv.model.edit</module>
+		<module>it.naturtalent.archiv.ui</module>
+		<module>it.naturtalent.archiv.viewmodel</module>
 	</modules>
 
 </project>

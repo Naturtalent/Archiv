@@ -27,6 +27,8 @@ import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
+import it.naturtalent.archiv.model.archiv.Archiv;
+import it.naturtalent.archiv.model.archiv.Ordner;
 import it.naturtalent.archiv.model.archiv.Register;
 import it.naturtalent.archiv.ui.ArchivUtils;
 
@@ -81,11 +83,27 @@ public class ArchivMasterDetailRenderer  extends TreeMasterDetailSWTRenderer
 				// die Selektionen im SelectionService veroeffentlichen
 				Object treeSelected = ((IStructuredSelection) event.getSelection()).getFirstElement();	
 				eSelectionService.setSelection(treeSelected);	
-				eventBroker.post(ArchivUtils.REGISTER_SELECTION_EVENT, treeSelected);
+				eventBroker.post(ArchivUtils.ARCHIVE_SELECTION_EVENT, treeSelected);
 			}
 		});
 		
 		return treeViewer;
+	}
+	
+	/**
+	 * Das uebergebene Register im MasterView selektieren.
+	 * 
+	 * @param register
+	 */
+	@Inject
+	@Optional
+	public void handleSelectArchivEvent(@UIEventTopic(ArchivUtils.SELECT_ARCHIV_REQUEST) Archiv archiv)
+	{
+		if (archiv != null)
+		{
+			if (!treeViewer.getTree().isDisposed())
+				treeViewer.setSelection(new StructuredSelection(archiv));
+		}
 	}
 	
 	/**
@@ -103,6 +121,42 @@ public class ArchivMasterDetailRenderer  extends TreeMasterDetailSWTRenderer
 				treeViewer.setSelection(new StructuredSelection(register));
 		}
 	}
+	
+	/**
+	 * RefreshMasterTree
+	 * 
+	 * 
+	 * @param register
+	 */
+	@Inject
+	@Optional
+	public void handleRefreshRequest(@UIEventTopic(ArchivUtils.REFRESH_MASTER_REQUEST) Object object)
+	{
+		if (!treeViewer.getTree().isDisposed())
+		{
+			if(object == null)
+				treeViewer.refresh();
+			else
+				treeViewer.refresh(object);
+		}
+	}
+
+	/**
+	 * RefreshMasterTree
+	 * 
+	 * 
+	 * @param register
+	 */
+	@Inject
+	@Optional
+	public void handleSelectOrdnerRequest(@UIEventTopic(ArchivUtils.SELECT_ORDNER_REQUEST) Ordner ordner)
+	{
+		if (!treeViewer.getTree().isDisposed())
+		{
+			treeViewer.setSelection(new StructuredSelection(ordner));
+		}
+	}
+
 
 	@Override
 	protected Control renderControl(SWTGridCell cell, Composite parent)

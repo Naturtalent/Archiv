@@ -29,7 +29,8 @@ public class ArchivAddon
 	@Inject @Optional ESelectionService selectionService;
 	
 	// das zentrale ProjectPropertyRepository
-	private @Inject INtProjectPropertyFactoryRepository ntProjektDataFactoryRepository;
+	private @Inject
+	static INtProjectPropertyFactoryRepository ntProjektDataFactoryRepository;
 
 	/*
 	@Inject
@@ -80,5 +81,12 @@ public class ArchivAddon
 		}
 		*/
 	}
+
+	public static  INtProjectPropertyFactoryRepository getNtProjektDataFactoryRepository()
+	{
+		return ntProjektDataFactoryRepository;
+	}
+	
+	
 	
 }

@@ -1,7 +1,9 @@
 package it.naturtalent.archiv.ui;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EventObject;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -17,15 +19,19 @@ import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.internal.workbench.E4Workbench;
 import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
+import org.eclipse.e4.ui.model.application.ui.menu.MToolItem;
 import org.eclipse.e4.ui.workbench.IWorkbench;
+import org.eclipse.e4.ui.workbench.modeling.EModelService;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecp.ui.view.ECPRendererException;
 import org.eclipse.emf.ecp.ui.view.swt.ECPSWTViewRenderer;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.CreateChildCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.emfstore.internal.client.model.changeTracking.commands.EMFStoreBasicCommandStack;
@@ -54,7 +60,23 @@ public class ProjectPropertyWizardPage extends WizardPage
 		public void commandStackChanged(EventObject event)
 		{
 			EMFStoreBasicCommandStack commandStack = (EMFStoreBasicCommandStack) event.getSource();
-			Command command = commandStack.getMostRecentCommand();				
+			Command command = commandStack.getMostRecentCommand();
+			if(command instanceof SetCommand)				
+			{
+				// Aenderugen im Modell
+				EStructuralFeature eStructuralFeature = ((SetCommand) command).getFeature();					
+				if(StringUtils.equals(eStructuralFeature.getName(), ArchivUtils.FEATURE_REGISTERTYPE))
+				{
+					// RegisterTyp geaendert -> Refresh MasterTree (Ordner)
+					List<Object> result = new ArrayList<Object>();
+					result.addAll(command.getResult());
+					eventBroker.post(ArchivUtils.REFRESH_MASTER_REQUEST, result.get(0));
+					
+					// Ordner selektieren
+					eventBroker.post(ArchivUtils.SELECT_ORDNER_REQUEST, result.get(0));					
+				}
+			}
+
 			if(command instanceof AddCommand)				
 			{
 				// neues Register
@@ -118,7 +140,7 @@ public class ProjectPropertyWizardPage extends WizardPage
 	private ArchivCommandStackListener archivCommandStackListener = new ArchivCommandStackListener();
 
 	// das zuletzt vom Wizard selektierte Register
-	private Register selectedRegister;
+	//private Register selectedRegister;
 	
 	private ArchivProjectProperty archivProjectProperty;
 	
@@ -199,16 +221,19 @@ public class ProjectPropertyWizardPage extends WizardPage
 		super.dispose();
 	}
 
+	/*
 	public Register getSelectedRegister()
 	{
 		return selectedRegister;
 	}
+	*/
 
 	public void setArchivProjectProperty(ArchivProjectProperty archivProjectProperty)
 	{
 		this.archivProjectProperty = archivProjectProperty;
 	}
 	
+	/*
 	@Inject
 	@Optional
 	public void handleModelChangedEvent(@UIEventTopic(ArchivUtils.REGISTER_SELECTION_EVENT) Register register)
@@ -226,6 +251,34 @@ public class ProjectPropertyWizardPage extends WizardPage
 			}
 		}
 	}
+	*/
+	
+	@Inject
+	@Optional
+	public void handleModelChangedEvent(@UIEventTopic(ArchivUtils.ARCHIVE_SELECTION_EVENT) Object selectedArchivEntry)
+	{
+		// verhindert, dass 'handleModelChangedEvent' auf eine nicht mehr aktuelle WizardPage angewendet wird 
+		if (archivProjectProperty != null)
+		{
+			//this.selectedRegister = null;
+			archivProjectProperty.setSelectedRegister(null);
+			
+			
+			if (selectedArchivEntry instanceof Register)
+			{
+				Register register = (Register) selectedArchivEntry;			
+				//this.selectedRegister = register;
+				archivProjectProperty.setSelectedRegister(register);
+				if (register != null)
+				{
+					String selectedProjectID = register.getProjectID();
+					if (!StringUtils.equals(iProjectID, selectedProjectID))
+						informChangeAssignmentDialog(selectedProjectID);
+				}
+			}
+		}
+	}
+
 	
 	/*
 	 * Info falls das selektierte Register bereits einem Project zugeordnet ist.
@@ -235,8 +288,7 @@ public class ProjectPropertyWizardPage extends WizardPage
 	{
 		if (StringUtils.isNotEmpty(projectID))
 		{
-			IProject iProject = ResourcesPlugin.getWorkspace().getRoot()
-					.getProject(projectID);
+			IProject iProject = ResourcesPlugin.getWorkspace().getRoot().getProject(projectID);
 			if (iProject.exists())
 			{
 				String projectName = "undefined Project"; // $NON-NLS-N$

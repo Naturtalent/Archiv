@@ -156,27 +156,27 @@ public class ArchivItemProvider
 	 * This returns Archiv.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Archiv"));
+		//return overlayImage(object, getResourceLocator().getImage("full/obj16/Archiv"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/projekt.png"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object)
 	{
 		String label = ((Archiv)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Archiv_type") :
-			getString("_UI_Archiv_type") + " " + label;
+			getString("_UI_Archiv_type") : label;			
 	}
 	
 

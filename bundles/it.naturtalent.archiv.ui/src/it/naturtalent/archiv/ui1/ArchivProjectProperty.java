@@ -24,6 +24,7 @@ import org.eclipse.swt.widgets.Display;
 import it.naturtalent.archiv.ui.Activator;
 import it.naturtalent.archiv.ui.ArchivUtils;
 import it.naturtalent.archiv.ui.actions1.SaveAction;
+import it.naturtalent.e4.project.INtProjectProperty;
 import it.naturtalent.e4.project.ui.DefaultNtProjectProperty;
 import it.naturtalent.emf.model.EMFModelUtils;
 import it.naturtalent.archiv.model.archiv.Archiv;

@@ -21,37 +21,29 @@ import org.eclipse.swt.widgets.Display;
 import it.naturtalent.archiv.model.archiv.Ordner;
 import it.naturtalent.archiv.model.archiv.Register;
 import it.naturtalent.archiv.ui.action.SelectRegisterAction;
-import it.naturtalent.archiv.ui.action.SelectRegisterAction1;
 import it.naturtalent.e4.project.INtProject;
 import it.naturtalent.e4.project.INtProjectProperty;
-import it.naturtalent.e4.project.NtProject;
+import it.naturtalent.e4.project.ui.emf.NtProjectPropertyFactory;
 
+/**
+ * ArchivProjectProperty Adapter
+ * 
+ * @author dieter
+ *
+ */
 public class ArchivProjectProperty implements INtProjectProperty
 {
 	// ID des Projekts, auf das sich die Eigenschaft bezieht
 	protected String ntProjectID;
-		
+	
+	// das ueber durch 'ntProjectID' definierte Register (ProjectPropertyData)
 	private Register register;
 	
+	// die durch 'createWizardPage()' erzeugte WizardPage
 	private ProjectPropertyWizardPage archivWizardPage;
 	
-	/*
-	public ArchivProjectProperty()
-	{
-		MApplication currentApplication = E4Workbench.getServiceContext().get(IWorkbench.class).getApplication();
-		IEventBroker eventBroker = currentApplication.getContext().get(IEventBroker.class);
-		eventBroker.subscribe(ArchivUtils.REGISTER_SELECTION_EVENT, new EventHandler()
-		{			
-			@Override
-			public void handleEvent(Event event)
-			{
-				register = (Register) event.getProperty(IEventBroker.DATA);
-				System.out.println(register);
-				
-			}
-		});
-	}
-	*/
+	// dieses Register wurde im WizardPage fuer die Projektkopplung ausgewaehlt
+	private Register selectedRegister = null;
 
 	/* 
 	 * Ueber die ProjectID wird das zugeordnete Register in den Adapter geladen.
@@ -87,6 +79,7 @@ public class ArchivProjectProperty implements INtProjectProperty
 	@Override
 	public void setNtPropertyData(Object eObject)
 	{
+		register = null;
 		if (eObject instanceof Register)
 			register = (Register) eObject;
 	}
@@ -104,7 +97,7 @@ public class ArchivProjectProperty implements INtProjectProperty
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	/* 
 	 * Die ProjectID 'ntProjectID' wird in dem mit der Wizard selektierten Register eingetragen.
 	 *   
@@ -116,21 +109,28 @@ public class ArchivProjectProperty implements INtProjectProperty
 	{
 		if((StringUtils.isNotEmpty(ntProjectID)) && (archivWizardPage != null))
 		{
-			// wurde mit dem Wizard  ein ZielRegister selektiert
-			Register selectedRegister = archivWizardPage.getSelectedRegister();
+			// ist Project 'ntProjectID' noch ein einem anderen Register eingetragen, dann dort loeschen
+			Register checkRegister = ArchivUtils.findIProjectRegister(ntProjectID);
+			if(checkRegister != null)
+			{
+				// alte Kopplung loesen
+				checkRegister.setProjectID(null);
+				checkRegister.setLabel(null);
+			}					
+
+			// wurde mit dem Wizard ein ZielRegister selektiert			
 			if(selectedRegister != null)
 			{
-				// ist dem selektierten Register bereits ein Projekt zugeordnet
-				String selectedProjectID = selectedRegister.getProjectID();
-				
+				// ist das selektierte Register bereits gekoppelt
+				String selectedProjectID = selectedRegister.getProjectID();				
 				if(StringUtils.isEmpty(selectedProjectID))
 				{
 					// Normalfall: es wurde ein 'freies' Register ausgewaehlt
 					
-					// 'ntProjectID' wird eintragen
+					// Projekt-ID 'ntProjectID' wird eintragen (die eigentliche Kopplung)
 					selectedRegister.setProjectID(ntProjectID);
 					
-					// Name des Project als Label im Register eintragen
+					// Projekt-Name als Label im Register eintragen
 					IProject iProject = ResourcesPlugin.getWorkspace().getRoot().getProject(ntProjectID);
 					if(iProject.exists())
 					{
@@ -144,28 +144,20 @@ public class ArchivProjectProperty implements INtProjectProperty
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-					};
-										
-					// ist Project noch ein einem anderen Register eingetragen, dann dort loeschen
-					Register checkRegister = ArchivUtils.findIProjectRegister(ntProjectID);
-					if(checkRegister != null)
-					{
-						checkRegister.setProjectID(null);
-						checkRegister.setLabel(null);
-					}					
+					};								
 				}
 				else
 				{
-					// im selektierten Register ist bereits eine ProjectID eingetragen 
+					// das selektierte Register ist bereits gekoppelt 
 					if (!StringUtils.equals(selectedProjectID, ntProjectID))
 					{
-						// Abfrage ueberschreiben erlaubt 
-						if(confirmChangeAssignmentDialog(selectedProjectID))
+						// Abfrage 'bestehende Kopplung loesen ?' erlauben 
+						if(confirmChangeLinkageDialog(selectedProjectID))
 						{
-							// die bestehende Zuordnung ueberschreiben
+							// die bestehende Kopplung ersetzen
 							selectedRegister.setProjectID(ntProjectID);
 							
-							// Name des Project als Label im Register eintragen
+							// Projektname als Label im Register eintragen
 							IProject iProject = ResourcesPlugin.getWorkspace().getRoot().getProject(ntProjectID);
 							if(iProject.exists())
 							{
@@ -194,11 +186,96 @@ public class ArchivProjectProperty implements INtProjectProperty
 			archivWizardPage.setArchivProjectProperty(null);			
 		archivWizardPage = null;
 	}
+
 	
+	
+	
+	public void commitOLD()
+	{
+		if((StringUtils.isNotEmpty(ntProjectID)) && (archivWizardPage != null))
+		{
+			// ist Project 'ntProjectID' noch ein einem anderen Register eingetragen, dann dort loeschen
+			Register checkRegister = ArchivUtils.findIProjectRegister(ntProjectID);
+			if(checkRegister != null)
+			{
+				checkRegister.setProjectID(null);
+				checkRegister.setLabel(null);
+			}					
+
+			// wurde mit dem Wizard ein ZielRegister selektiert			
+			if(selectedRegister != null)
+			{
+				// ist das selektierte Register bereits gekoppelt
+				String selectedProjectID = selectedRegister.getProjectID();				
+				if(StringUtils.isEmpty(selectedProjectID))
+				{
+					// Normalfall: es wurde ein 'freies' Register ausgewaehlt
+					
+					// Projekt-ID 'ntProjectID' wird eintragen (die eigentliche Kopplung)
+					selectedRegister.setProjectID(ntProjectID);
+					
+					// Projekt-Name als Label im Register eintragen
+					IProject iProject = ResourcesPlugin.getWorkspace().getRoot().getProject(ntProjectID);
+					if(iProject.exists())
+					{
+						try
+						{
+							String name = iProject.getPersistentProperty(INtProject.projectNameQualifiedName);
+							selectedRegister.setLabel(name);
+							
+						} catch (CoreException e)
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					};								
+				}
+				else
+				{
+					// das selektierte Register ist bereits gekoppelt 
+					if (!StringUtils.equals(selectedProjectID, ntProjectID))
+					{
+						// Abfrage 'bestehende Kopplung loesen ?' erlauben 
+						if(confirmChangeLinkageDialog(selectedProjectID))
+						{
+							// die bestehende Kopplung ersetzen
+							selectedRegister.setProjectID(ntProjectID);
+							
+							// Projektname als Label im Register eintragen
+							IProject iProject = ResourcesPlugin.getWorkspace().getRoot().getProject(ntProjectID);
+							if(iProject.exists())
+							{
+								try
+								{
+									String name = iProject.getPersistentProperty(INtProject.projectNameQualifiedName);
+									selectedRegister.setLabel(name);
+									
+								} catch (CoreException e)
+								{
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							};
+						}
+					}
+				}
+			}			
+		}
+		
+	
+		ECPHandlerHelper.saveProject(ArchivUtils.getArchivProject());
+		
+		// WizardPage wird ungueltig
+		if(archivWizardPage != null)
+			archivWizardPage.setArchivProjectProperty(null);			
+		archivWizardPage = null;
+	}
+
+
 	/*
-	 * return 'true' - bestehende Zuordnung ueberschreiben
+	 * return 'true' - bestehende Projektzuordnung ueberschreiben
 	 */
-	private boolean confirmChangeAssignmentDialog(String projectID)
+	private boolean confirmChangeLinkageDialog(String projectID)
 	{
 		IProject iProject  = ResourcesPlugin.getWorkspace().getRoot().getProject(projectID);
 		if(!iProject.exists())
@@ -251,16 +328,14 @@ public class ArchivProjectProperty implements INtProjectProperty
 
 	@Override
 	public void delete()
-	{
-		// TODO Auto-generated method stub
-
+	{		
 	}
 
 	@Override
 	public Action createAction()
 	{
 		// TODO Auto-generated method stub
-		return new SelectRegisterAction1();
+		return new SelectRegisterAction();
 	}
 
 	@Override
@@ -276,7 +351,7 @@ public class ArchivProjectProperty implements INtProjectProperty
 	}
 	
 	/**
-	 * Abhaengig vom RegisterTyp wird die aktulle Registerinformation zuruckgegeben
+	 * Abhaengig vom RegisterTyp wird die aktuelle Registerinformation zuruckgegeben
 	 * 
 	 * @return
 	 */
@@ -310,6 +385,30 @@ public class ArchivProjectProperty implements INtProjectProperty
 		}
 		
 		return info + stgRegister;
+	}
+	
+	public Register getSelectedRegister()
+	{
+		return selectedRegister;
+	}
+
+	public void setSelectedRegister(Register selectedRegister)
+	{
+		this.selectedRegister = selectedRegister;
+	}
+
+	@Override
+	public String getPropertyFactoryName()
+	{		
+		// Factoryname = diese Klasse + Extension 'Factory'
+		return this.getClass().getName()
+				+ NtProjectPropertyFactory.PROJECTPROPERTYFACTORY_EXTENSION;
+	}
+
+	@Override
+	public boolean importProperty(Object importData)
+	{		
+		return false;
 	}
 	
 }

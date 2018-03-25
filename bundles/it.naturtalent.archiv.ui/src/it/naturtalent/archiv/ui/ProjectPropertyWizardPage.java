@@ -36,17 +36,22 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.emfstore.internal.client.model.changeTracking.commands.EMFStoreBasicCommandStack;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Text;
 
 import it.naturtalent.archiv.model.archiv.Archive;
 import it.naturtalent.archiv.model.archiv.Ordner;
 import it.naturtalent.archiv.model.archiv.Register;
 import it.naturtalent.e4.project.INtProject;
+import it.naturtalent.e4.project.model.project.NtProject;
 import it.naturtalent.e4.project.ui.Activator;
+import it.naturtalent.e4.project.ui.emf.ProjectModelEventKey;
 import it.naturtalent.e4.project.ui.navigator.ResourceNavigator;
 
 public class ProjectPropertyWizardPage extends WizardPage
@@ -103,6 +108,7 @@ public class ProjectPropertyWizardPage extends WizardPage
 							register.setAlphaData(ArchivUtils.autoRegisterAlpha(ordner,"A"));
 							break;
 					}
+					eventBroker.post(ArchivUtils.SELECT_REGISTER_REQUEST, register);
 				}						
 			}
 			
@@ -131,6 +137,7 @@ public class ProjectPropertyWizardPage extends WizardPage
 								break;
 						}
 					}
+					eventBroker.post(ArchivUtils.SELECT_REGISTER_REQUEST, register);
 				}					
 			}			
 
@@ -139,8 +146,7 @@ public class ProjectPropertyWizardPage extends WizardPage
 	}
 	private ArchivCommandStackListener archivCommandStackListener = new ArchivCommandStackListener();
 
-	// das zuletzt vom Wizard selektierte Register
-	//private Register selectedRegister;
+	private Text projectNameText;
 	
 	private ArchivProjectProperty archivProjectProperty;
 	
@@ -151,6 +157,7 @@ public class ProjectPropertyWizardPage extends WizardPage
 	
 	// das vom Navigator selektierte Projekt
 	private String iProjectID;
+	
 	
 	
 	
@@ -259,26 +266,27 @@ public class ProjectPropertyWizardPage extends WizardPage
 	{
 		// verhindert, dass 'handleModelChangedEvent' auf eine nicht mehr aktuelle WizardPage angewendet wird 
 		if (archivProjectProperty != null)
-		{
-			//this.selectedRegister = null;
+		{			
 			archivProjectProperty.setSelectedRegister(null);
-			
-			
+						
 			if (selectedArchivEntry instanceof Register)
 			{
+				// ein Register wurde ausgewaehlt
 				Register register = (Register) selectedArchivEntry;			
-				//this.selectedRegister = register;
 				archivProjectProperty.setSelectedRegister(register);
-				if (register != null)
-				{
-					String selectedProjectID = register.getProjectID();
-					if (!StringUtils.equals(iProjectID, selectedProjectID))
-						informChangeAssignmentDialog(selectedProjectID);
-				}
 			}
 		}
 	}
 
+	/*
+	@Inject
+	@Optional
+	public void handleProjectModelChangedEvent(
+			@UIEventTopic(ProjectModelEventKey.PROJECT_MODIFY_MODELEVENT) NtProject ntObject)
+	{
+		System.out.println("ProjectName"+ntObject.getName());
+	}
+	*/
 	
 	/*
 	 * Info falls das selektierte Register bereits einem Project zugeordnet ist.
@@ -326,77 +334,25 @@ public class ProjectPropertyWizardPage extends WizardPage
 		
 		if(visible)
 		{
-			/*
-			// WizardPage wurde zur Bearbeitung geoffnet
-			Register register = (Register) archivProjectProperty.getNtPropertyData();
-			if(register == null)
-			{
-				System.out.println("ArchivProjectProperty - noch nicht zugeordnet");
-			}
-			else
-			{
-				// das bereits zugeordnete Register selektieren
-				eventBroker.post(ArchivUtils.SELECT_REGISTER_REQUEST, register);				
-			}
-			*/
+		
 		}
 		else
 		{
-			// WizardPage wurde geschlossen
-			
-			/*
-			Register projectRegister = (Register) archivProjectProperty.getNtPropertyData();
-			if((pageRegister == null) && (projectRegister == null))
-			{
-				// keine Archivzuordnung
-				return;
-			}
-			
-			if((pageRegister != null) && (projectRegister == null))
-			{
-				// ein neues Projekt einem Register zuordnen
-				String selectedProjectID = pageRegister.getProjectID();
-				
-				if(StringUtils.isNotEmpty(selectedProjectID))
-				{
-					// dem Zielregister ist bereits ein Projekt zugeordnet
-					if(confirmChangeAssignmentDialog(pageRegister.getProjectID()))
-					{
-						// bestehende Zuordnung kann aufgehoben werden
-						System.out.println("bestehende Zurodnung aufheben");
-					}
-					else
-					{
-						System.out.println("bestehende Zurodnung nicht aufheben");
-					}
-				}
-				else
-				{
-					// dem Zielregister ist noch kein Projekt zugeordnet 
-					System.out.println("es besteht keine Zurodnung");
-				}
-				
-				return;
-			}
-			*/
-			
-			
-			
-			//System.out.println("PageRegister: "+withPageSelectedRegister+"  ExistRegister: "+archivProjectProperty.getNtPropertyData());
-			
-			/*
-			MApplication currentApplication = E4Workbench.getServiceContext().get(IWorkbench.class).getApplication();
-			EPartService partService = currentApplication.getContext().get(EPartService.class);
-			MPart part = partService.
-								
-			ESelectionService selectionService = part.getContext().get(ESelectionService.class);
-			Object selObject = selectionService.getSelection();
-			System.out.println(selObject);
-			*/
-			
 			
 		}
-		
 	}
+	
+	/**
+	 * Ermöglicht den Zugriff auf das Eingabefeld des Projektnamens im NtProjektWizard.
+	 * 
+	 * @param text
+	 */
+	@Inject
+	@Optional
+	public void handleModelChangedEvent(@UIEventTopic(ProjectModelEventKey.PROJECTNAME_WIZARDTEXTFIELD) Text text)
+	{
+		projectNameText = text;
+	}
+
 
 }

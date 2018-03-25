@@ -118,7 +118,7 @@ public class ArchivMasterDetailRenderer  extends TreeMasterDetailSWTRenderer
 		if (register != null)
 		{
 			if (!treeViewer.getTree().isDisposed())
-				treeViewer.setSelection(new StructuredSelection(register));
+				treeViewer.setSelection(new StructuredSelection(register),true);
 		}
 	}
 	

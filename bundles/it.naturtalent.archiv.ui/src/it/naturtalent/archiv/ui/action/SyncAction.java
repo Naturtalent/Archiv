@@ -54,11 +54,13 @@ public class SyncAction
 			navigator.setSelection(iProject);
 			
 			// 'NtProject' im NtView aktualisieren
+			/*
 			MApplication currentApplication = E4Workbench.getServiceContext().get(IWorkbench.class).getApplication();			
 			MPart part = partService.findPart(NtProjectView.NTPROJECT_VIEW_ID);
 			NtProjectView projectView = (NtProjectView) part.getObject();			
 			NtProject ntProject = Activator.findNtProject(iProject.getName());
 			projectView.showDetails(ntProject);
+			*/
 		}
 	}
 
@@ -70,29 +72,26 @@ public class SyncAction
 	@Inject
 	public void handleSelection(
 			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional Register register)
-	{
-		boolean state = false;
+	{	
+		// Toolbarstatus Sync updaten
+		MPart mPart = partService.findPart(ArchivView.ARCHIVVIEW_ID);
 		
-		if (register instanceof Register)
+		// sync - Toolbar
+		List<MToolItem> items = modelService.findElements(mPart,
+				ArchivView.SYNC_TOOLBAR_ID, MToolItem.class, null,
+				EModelService.IN_PART);
+		MToolItem item = items.get(0);
+		item.setEnabled(false);
+
+		if (register instanceof Register)	
 		{
-			// Toolbarstatus Sync updaten
-			MPart mPart = partService.findPart(ArchivView.ARCHIVVIEW_ID);
-			
-			// sync - Toolbar
-			List<MToolItem> items = modelService.findElements(mPart,
-					ArchivView.SYNC_TOOLBAR_ID, MToolItem.class, null,
-					EModelService.IN_PART);
-			MToolItem item = items.get(0);
-			
 			String projectID = register.getProjectID();
 			if(StringUtils.isNotEmpty(projectID))
 			{
-				iProject = ResourcesPlugin.getWorkspace().getRoot().getProject(projectID);
-				state = (iProject.exists());
-				iProject = (state) ? iProject : null;
+				iProject = ResourcesPlugin.getWorkspace().getRoot().getProject(projectID);				
+				iProject = (iProject.exists()) ? iProject : null;				
+				item.setEnabled(iProject != null);
 			}
-
-			item.setEnabled(state);
 		}
 	}
 

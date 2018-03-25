@@ -3,12 +3,16 @@ package it.naturtalent.archiv.ui;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
+import javax.inject.Inject;
+
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.e4.core.contexts.ContextInjectionFactory;
 import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.internal.workbench.E4Workbench;
 import org.eclipse.emf.ecp.spi.ui.util.ECPHandlerHelper;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -17,6 +21,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Text;
 
 import it.naturtalent.archiv.model.archiv.Ordner;
 import it.naturtalent.archiv.model.archiv.Register;
@@ -24,6 +29,7 @@ import it.naturtalent.archiv.ui.action.SelectRegisterAction;
 import it.naturtalent.e4.project.INtProject;
 import it.naturtalent.e4.project.INtProjectProperty;
 import it.naturtalent.e4.project.ui.emf.NtProjectPropertyFactory;
+import it.naturtalent.e4.project.ui.emf.ProjectModelEventKey;
 
 /**
  * ArchivProjectProperty Adapter
@@ -136,6 +142,7 @@ public class ArchivProjectProperty implements INtProjectProperty
 					{
 						try
 						{
+							// bei gekoppelten Registern wird der Projektname uebernommen
 							String name = iProject.getPersistentProperty(INtProject.projectNameQualifiedName);
 							selectedRegister.setLabel(name);
 							
@@ -163,6 +170,7 @@ public class ArchivProjectProperty implements INtProjectProperty
 							{
 								try
 								{
+									// bei gekoppelten Registern wird der Projektname uebernommen
 									String name = iProject.getPersistentProperty(INtProject.projectNameQualifiedName);
 									selectedRegister.setLabel(name);
 									
@@ -410,5 +418,7 @@ public class ArchivProjectProperty implements INtProjectProperty
 	{		
 		return false;
 	}
+	
+
 	
 }

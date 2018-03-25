@@ -144,6 +144,7 @@ public class ArchivView
 							register.setAlphaData(ArchivUtils.autoRegisterAlpha(ordner,"A"));
 							break;
 					}
+					eventBroker.post(ArchivUtils.SELECT_REGISTER_REQUEST, register);
 				}						
 			}				
 											
@@ -171,6 +172,7 @@ public class ArchivView
 								break;
 						}
 					}
+					eventBroker.post(ArchivUtils.SELECT_REGISTER_REQUEST, register);
 				}					
 			}
 			

@@ -11,5 +11,8 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: it.naturtalent.archiv.model.archiv.provider
 Require-Bundle: org.eclipse.core.runtime,
  it.naturtalent.archiv.model;visibility:=reexport,
- org.eclipse.emf.edit;visibility:=reexport
+ org.eclipse.emf.edit;visibility:=reexport,
+ it.naturtalent.icons,
+ org.eclipse.swt,
+ it.wp.common.io
 Bundle-ActivationPolicy: lazy

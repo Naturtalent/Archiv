@@ -6,18 +6,23 @@ package it.naturtalent.archiv.model.archiv.provider;
 import it.naturtalent.archiv.model.archiv.ArchivPackage;
 import it.naturtalent.archiv.model.archiv.Ordner;
 import it.naturtalent.archiv.model.archiv.Register;
+import it.naturtalent.icons.core.Icon;
+import it.naturtalent.icons.core.IconSize;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
+import org.eclipse.emf.edit.EMFEditPlugin;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -27,6 +32,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.swt.graphics.Image;
 
 /**
  * This is the item provider adapter for a {@link it.naturtalent.archiv.model.archiv.Register} object.
@@ -201,8 +207,26 @@ public class RegisterItemProvider
 	public Object getImage(Object object)
 	{
 		//return overlayImage(object, getResourceLocator().getImage("full/obj16/Register"));
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/page.png"));
+		//return overlayImage(object, getResourceLocator().getImage("full/obj16/page.png"));
 		
+		Object image = overlayImage(object, getResourceLocator().getImage("full/obj16/page.png"));				
+		if (object instanceof Register)
+		{
+			Register register = (Register) object;
+
+			String projectID = register.getProjectID(); 
+			if(StringUtils.isNotEmpty(projectID))
+			{				
+				List<Object> images = new ArrayList<Object>(2);
+				images.add(image);					
+				Object ovr = Icon.OVERLAY_PROJECT_CO.getImage(IconSize._7x8_OverlayIconSize);
+				images.add(ovr);		
+				images.add(EMFEditPlugin.INSTANCE.getImage("full/ovr16/ControlledObject"));
+				image = new ComposedImage(images);
+			}
+		}
+		
+		return image;
 	}
 
 	/**

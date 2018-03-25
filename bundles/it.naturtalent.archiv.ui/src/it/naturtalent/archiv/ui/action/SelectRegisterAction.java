@@ -71,29 +71,6 @@ public class SelectRegisterAction extends Action
 		{
 			// die geanderten Archivdaten im Modell speichern
 			archivProjectProperty.commit();
-			
-			/*
-			// die Factorynamen aus dem PropertyFile lesen
-			INtProjectPropertyFactoryRepository repo = ArchivAddon
-					.getNtProjektDataFactoryRepository();
-			IProject iProject = ResourcesPlugin.getWorkspace().getRoot()
-					.getProject(iProjectID);
-			List<INtProjectPropertyFactory>propertyFactories = NtProjektPropertyUtils
-					.getProjectPropertyFactories(repo, iProject);
-			List<String>factoryNames = NtProjektPropertyUtils.getProjectPropertyFactoryNames(repo, iProject);
-			
-			// Archiv-Factoryname zunaechst entfernen
-			String factoryName = archivProjectProperty.getPropertyFactoryName();
-			factoryNames.remove(factoryName);
-			
-			// wurde ein Register selektiert wird der FactoryName wieder hinzugefuegt			
-			if(archivProjectProperty.getSelectedRegister() != null)
-				factoryNames.add(factoryName);
-			
-			// PropertyFactoryNames in Datei speichern und UpdateRequest an ProjectView
-			String [] factoryNamesArray = factoryNames.toArray(new String[factoryNames.size()]);
-			NtProjektPropertyUtils.saveProjectPropertyFactories(iProjectID, factoryNamesArray);
-			*/
 				
 			// ProjectView Aktualisierung anfordern
 			EObject eObject = Activator.findNtProject(iProjectID);

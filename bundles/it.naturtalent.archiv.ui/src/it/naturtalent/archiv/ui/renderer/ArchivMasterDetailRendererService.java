@@ -6,6 +6,8 @@ import org.eclipse.emf.ecp.view.treemasterdetail.model.VTreeMasterDetail;
 import org.eclipse.emf.ecp.view.treemasterdetail.ui.swt.internal.TreeMasterDetailSWTRendererService;
 import org.eclipse.emfforms.spi.swt.core.AbstractSWTRenderer;
 
+import it.naturtalent.archiv.model.archiv.Archive;
+
 public class ArchivMasterDetailRendererService extends TreeMasterDetailSWTRendererService
 {
 	/**
@@ -18,8 +20,9 @@ public class ArchivMasterDetailRendererService extends TreeMasterDetailSWTRender
 	public double isApplicable(VElement vElement,ViewModelContext viewModelContext)
 	{
 		if (VTreeMasterDetail.class.isInstance(vElement))
-		{		
-			return 30d;
+		{	
+			if(viewModelContext.getDomainModel() instanceof Archive)
+				return 30d;
 		}
 		return NOT_APPLICABLE;
 	}

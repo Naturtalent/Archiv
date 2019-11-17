@@ -2,7 +2,7 @@
 <feature
       id="it.naturtalent.feature.archiv"
       label="Archiv"
-      version="1.0.0.201805162206"
+      version="1.0.0.201911172234"
       provider-name="Dieter.Apel">
 
    <description url="http://www.example.com/description">
@@ -21,28 +21,28 @@
          id="it.naturtalent.archiv.model"
          download-size="40"
          install-size="92"
-         version="1.0.0.201805162206"
+         version="1.0.0.201911172234"
          unpack="false"/>
 
    <plugin
          id="it.naturtalent.archiv.model.edit"
          download-size="30"
          install-size="51"
-         version="1.0.0.201805162206"
+         version="1.0.0.201911172234"
          unpack="false"/>
 
    <plugin
          id="it.naturtalent.archiv.ui"
-         download-size="204"
-         install-size="410"
-         version="1.0.0.201805162206"
+         download-size="98"
+         install-size="201"
+         version="1.0.0.201911172234"
          unpack="false"/>
 
    <plugin
          id="it.naturtalent.archiv.viewmodel"
-         download-size="5"
-         install-size="8"
-         version="1.0.0.201805162206"
+         download-size="6"
+         install-size="12"
+         version="1.0.0.201911172234"
          unpack="false"/>
 
 </feature>

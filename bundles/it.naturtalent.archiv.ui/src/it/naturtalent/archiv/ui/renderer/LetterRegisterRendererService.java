@@ -14,20 +14,27 @@ import org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService;
 
 import it.naturtalent.archiv.model.archiv.ArchivPackage;
 
-public class LetterRegisterRendererService
-		implements EMFFormsDIRendererService<VControl>
+public class LetterRegisterRendererService implements EMFFormsDIRendererService<VControl>
 {
 	
 	private EMFFormsDatabinding databindingService;
 	private ReportService reportService;
 	
 	
-	protected void setEMFFormsDatabinding(
-			EMFFormsDatabinding databindingService)
+	protected void setEMFFormsDatabinding( EMFFormsDatabinding databindingService)
 	{
 		this.databindingService = databindingService;
 	}
-
+	
+	/**
+	 * Called by the initializer to set the ReportService.
+	 *
+	 * @param reportService The ReportService
+	 */
+	protected void setReportService(ReportService reportService) 
+	{
+		this.reportService = reportService;		
+	}
 
 	@Override
 	public double isApplicable(VElement vElement,

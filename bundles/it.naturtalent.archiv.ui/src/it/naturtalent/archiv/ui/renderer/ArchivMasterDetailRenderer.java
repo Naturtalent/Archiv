@@ -89,7 +89,8 @@ public class ArchivMasterDetailRenderer  extends TreeMasterDetailSWTRenderer
 		
 		return treeViewer;
 	}
-	
+
+
 	/**
 	 * Das uebergebene Register im MasterView selektieren.
 	 * 

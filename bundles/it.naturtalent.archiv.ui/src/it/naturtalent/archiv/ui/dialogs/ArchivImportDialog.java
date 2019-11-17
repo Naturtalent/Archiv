@@ -114,23 +114,28 @@ public class ArchivImportDialog extends AbstractImportDialog
 	 */
 	private void disableOrdnerWithAssignedRegisters(List<ExpImportData>lexpimpdata)
 	{
-		for(ExpImportData lexpimp : lexpimpdata)
+		if (lexpimpdata != null)
 		{
-			Ordner ordner = (Ordner) lexpimp.getData();
-			for(Register register : ordner.getRegisters())
+			for (ExpImportData lexpimp : lexpimpdata)
 			{
-				String iProjectID = register.getProjectID();
-				if(StringUtils.isNotEmpty(iProjectID))
+				Ordner ordner = (Ordner) lexpimp.getData();
+				for (Register register : ordner.getRegisters())
 				{
-					// gekoppeltes Projekt
-					IProject iProject = ResourcesPlugin.getWorkspace().getRoot().getProject(iProjectID);
-					if(iProject.exists())
-					{						
-						if(ArchivUtils.findIProjectRegister(iProject.getName()) != null)
-							checkBoxTableViewer.setGrayed(lexpimp, true);
-						break;						
+					String iProjectID = register.getProjectID();
+					if (StringUtils.isNotEmpty(iProjectID))
+					{
+						// gekoppeltes Projekt
+						IProject iProject = ResourcesPlugin.getWorkspace()
+								.getRoot().getProject(iProjectID);
+						if (iProject.exists())
+						{
+							if (ArchivUtils.findIProjectRegister(
+									iProject.getName()) != null)
+								checkBoxTableViewer.setGrayed(lexpimp, true);
+							break;
+						}
 					}
-				}				
+				}
 			}
 		}
 	}

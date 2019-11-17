@@ -21,6 +21,14 @@ import org.eclipse.swt.widgets.Text;
 import it.naturtalent.archiv.model.archiv.Ordner;
 import it.naturtalent.archiv.model.archiv.RegisterType;
 
+/**
+ * Der Renderer blendet im Registerdialog das Eingabefeld 'alphaData' in Abhaengigkeit des im zugehoeringen Ordner 
+ * ausgewaehlten Registertyps ein-/aus.
+ *  
+ * 
+ * @author dieter
+ *
+ */
 public class LetterRegisterRenderer extends TextControlSWTRenderer
 {
 	@Inject

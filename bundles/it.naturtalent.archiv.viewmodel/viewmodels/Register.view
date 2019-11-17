@@ -1,19 +1,20 @@
-<?xml version="1.0" encoding="ASCII"?>
-<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/170" xmi:id="_XEORUA2vEeiNxIyo6wwxoA" name="Register" ecorePath="/Archiv_bundles/it.naturtalent.archiv.model/model/archiv.ecore">
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmi:id="_x-zWoAWIEeq6MLC6nB0SRw" name="Register">
   <rootEClass href="http://it.naturtalent/archiv#//Register"/>
-  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_XGrvdQ2vEeiNxIyo6wwxoA" name="Control numericData" labelAlignment="Left">
-    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_XGrvdg2vEeiNxIyo6wwxoA">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://it.naturtalent/archiv#//Register/numericData"/>
-    </domainModelReference>
-  </children>
-  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_XGrvdw2vEeiNxIyo6wwxoA" name="Control alphaData">
-    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_XGrveA2vEeiNxIyo6wwxoA">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://it.naturtalent/archiv#//Register/alphaData"/>
-    </domainModelReference>
-  </children>
-  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_XGlo0A2vEeiNxIyo6wwxoA" name="Control label">
-    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_XGrvcA2vEeiNxIyo6wwxoA">
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_x-0kwAWIEeq6MLC6nB0SRw" name="Control label">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_x-0kwQWIEeq6MLC6nB0SRw">
       <domainModelEFeature xsi:type="ecore:EAttribute" href="http://it.naturtalent/archiv#//Register/label"/>
     </domainModelReference>
   </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_x-1L0AWIEeq6MLC6nB0SRw" name="Control numericData">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_x-1L0QWIEeq6MLC6nB0SRw">
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://it.naturtalent/archiv#//Register/numericData"/>
+    </domainModelReference>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_x-1L0gWIEeq6MLC6nB0SRw" name="Control alphaData">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_x-1L0wWIEeq6MLC6nB0SRw">
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://it.naturtalent/archiv#//Register/alphaData"/>
+    </domainModelReference>
+  </children>
+  <ecorePaths>/it.naturtalent.archiv.model/model/archiv.ecore</ecorePaths>
 </org.eclipse.emf.ecp.view.model:View>

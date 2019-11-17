@@ -70,7 +70,7 @@ public class ArchivAddon
 		if(showViewAdapterRepository != null)
 		{
 			showViewAdapterRepository.addShowViewAdapter(new ShowArchivViewAdapter());
-			showViewAdapterRepository.addShowViewAdapter(new it.naturtalent.archiv.ui1.ShowArchivViewAdapter());
+			
 		}
 		
 		/*

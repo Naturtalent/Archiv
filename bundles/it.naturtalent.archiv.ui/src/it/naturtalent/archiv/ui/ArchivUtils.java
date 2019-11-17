@@ -16,7 +16,7 @@ import it.naturtalent.archiv.model.archiv.ArchivPackage;
 import it.naturtalent.archiv.model.archiv.Archive;
 import it.naturtalent.archiv.model.archiv.Ordner;
 import it.naturtalent.archiv.model.archiv.Register;
-import it.naturtalent.emf.model.EMFModelUtils;
+
 
 public class ArchivUtils
 {
@@ -99,7 +99,7 @@ public class ArchivUtils
 		
 		if(ecpArchivProject == null)
 		{
-			ecpArchivProject = EMFModelUtils.createProject(ARCHIVPROJECTNAME);
+			ecpArchivProject = it.naturtalent.e4.project.ui.Activator.createProject(ARCHIVPROJECTNAME);
 			if(ecpArchivProject == null)
 				log.error("es konnte kein ECPProject erzeugt werden");
 		}

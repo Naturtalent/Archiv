@@ -1,42 +1,28 @@
-package it.naturtalent.archiv.ui.dialogs1;
+package it.naturtalent.archiv.ui.dialogs;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecp.ui.view.ECPRendererException;
-import org.eclipse.emf.ecp.ui.view.swt.ECPSWTViewRenderer;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 
-
-
-public class DefaultEObjectDialog extends TitleAreaDialog
+public class NewRegisterDialog extends TitleAreaDialog
 {
+	private Text text;
 
-	private EObject eObject;
-	
 	/**
 	 * Create the dialog.
 	 * @param parentShell
 	 */
-	public DefaultEObjectDialog(Shell parentShell)
+	public NewRegisterDialog(Shell parentShell)
 	{
 		super(parentShell);
-	}
-		
-
-	/**
-	 * @wbp.parser.constructor
-	 */
-	public DefaultEObjectDialog(Shell parentShell, EObject eObject)
-	{
-		super(parentShell);
-		this.eObject = eObject;
 	}
 
 	/**
@@ -48,21 +34,20 @@ public class DefaultEObjectDialog extends TitleAreaDialog
 	{
 		Composite area = (Composite) super.createDialogArea(parent);
 		Composite container = new Composite(area, SWT.NONE);
-		container.setLayout(new GridLayout(2, false));
+		container.setLayout(new GridLayout(3, false));
 		container.setLayoutData(new GridData(GridData.FILL_BOTH));
+		new Label(container, SWT.NONE);
+		new Label(container, SWT.NONE);
+		new Label(container, SWT.NONE);
+		new Label(container, SWT.NONE);
 		
-		Composite composite = new Composite(container, SWT.NONE);
-		composite.setLayout(new GridLayout(1, false));
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		Label lblRegister = new Label(container, SWT.NONE);
+		lblRegister.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		lblRegister.setToolTipText("eine Bezeichnung für das Register definieren");
+		lblRegister.setText("Label");
 		
-		try
-		{
-			ECPSWTViewRenderer.INSTANCE.render(composite, eObject);
-		} catch (ECPRendererException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		text = new Text(container, SWT.BORDER);
+		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
 		return area;
 	}
@@ -86,7 +71,7 @@ public class DefaultEObjectDialog extends TitleAreaDialog
 	@Override
 	protected Point getInitialSize()
 	{
-		return new Point(450, 400);
+		return new Point(450, 300);
 	}
 
 }

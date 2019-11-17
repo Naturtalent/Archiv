@@ -134,17 +134,24 @@ public class ArchivView
 					
 					// abhaengig vom Registertyp automatisch ein Wert vorbelegen
 					Ordner ordner = (Ordner) register.eContainer();
-					switch (ordner.getRegisterType())
+					if (ordner != null)
 					{
-						case NUMERIC_TYPE:
-							register.setNumericData(ArchivUtils.autoRegisterNumber(ordner,(short) 1));
-							break;
+						switch (ordner.getRegisterType())
+							{
+								case NUMERIC_TYPE:
+									register.setNumericData(
+											ArchivUtils.autoRegisterNumber(
+													ordner, (short) 1));
+									break;
 
-						case LETTER_TYPE:
-							register.setAlphaData(ArchivUtils.autoRegisterAlpha(ordner,"A"));
-							break;
+								case LETTER_TYPE:
+									register.setAlphaData(ArchivUtils
+											.autoRegisterAlpha(ordner, "A"));
+									break;
+							}
+						eventBroker.post(ArchivUtils.SELECT_REGISTER_REQUEST,
+								register);
 					}
-					eventBroker.post(ArchivUtils.SELECT_REGISTER_REQUEST, register);
 				}						
 			}				
 											

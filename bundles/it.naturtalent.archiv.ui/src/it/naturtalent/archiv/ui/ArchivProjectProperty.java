@@ -414,9 +414,17 @@ public class ArchivProjectProperty implements INtProjectProperty
 	}
 
 	@Override
-	public boolean importProperty(Object importData)
-	{		
-		return false;
+	public void exportProperty()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void importProperty()
+	{
+		// TODO Auto-generated method stub
+		
 	}
 	
 

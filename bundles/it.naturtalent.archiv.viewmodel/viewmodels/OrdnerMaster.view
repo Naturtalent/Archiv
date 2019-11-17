@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmlns:org.eclipse.emf.ecp.view.treemasterview.model="http://org/eclipse/emf/ecp/view/treemasterview/model" xmi:id="__nhwsAiqEeq3-aYJL_M-iA" name="Ordner">
+  <rootEClass href="http://it.naturtalent/archiv#//Ordner"/>
+  <children xsi:type="org.eclipse.emf.ecp.view.treemasterview.model:TreeMasterDetail" xmi:id="_ICeR0AitEeq3-aYJL_M-iA"/>
+  <ecorePaths>/it.naturtalent.archiv.model/model/archiv.ecore</ecorePaths>
+</org.eclipse.emf.ecp.view.model:View>

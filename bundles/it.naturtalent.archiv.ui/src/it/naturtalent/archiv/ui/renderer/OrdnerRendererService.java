@@ -2,6 +2,7 @@ package it.naturtalent.archiv.ui.renderer;
 
 import org.eclipse.core.databinding.property.value.IValueProperty;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecp.view.internal.control.multireference.MultiReferenceSWTRendererService;
 import org.eclipse.emf.ecp.view.spi.context.ViewModelContext;
 import org.eclipse.emf.ecp.view.spi.model.VControl;
 import org.eclipse.emf.ecp.view.spi.model.VElement;
@@ -10,33 +11,44 @@ import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedExcep
 import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedReport;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.swt.core.AbstractSWTRenderer;
-import org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService;
 
 import it.naturtalent.archiv.model.archiv.ArchivPackage;
 
-public class NumericRegisterRendererService implements EMFFormsDIRendererService<VControl>
+/**
+ * Liefert den modifizierten MultiReferenceSWTRenderer der in einem Ordner gespeicherten Register
+ * 
+ * @author dieter
+ *
+ */
+public class OrdnerRendererService extends MultiReferenceSWTRendererService
 {
-	
+
 	private EMFFormsDatabinding databindingService;
 	private ReportService reportService;
-	
-	
-	protected void setEMFFormsDatabinding(
-			EMFFormsDatabinding databindingService)
-	{
+
+	/**
+	 * Called by the initializer to set the EMFFormsDatabinding.
+	 *
+	 * @param databindingService The EMFFormsDatabinding
+	 */
+	protected void setEMFFormsDatabinding(EMFFormsDatabinding databindingService) {
 		this.databindingService = databindingService;
 	}
-	
+
 	/**
 	 * Called by the initializer to set the ReportService.
 	 *
 	 * @param reportService The ReportService
 	 */
-	protected void setReportService(ReportService reportService) 
-	{
-		this.reportService = reportService;		
+	protected void setReportService(ReportService reportService) {
+		this.reportService = reportService;
+		
 	}
-
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService#isApplicable(VElement,ViewModelContext)
+	 */
 	@Override
 	public double isApplicable(VElement vElement,
 			ViewModelContext viewModelContext)
@@ -45,7 +57,13 @@ public class NumericRegisterRendererService implements EMFFormsDIRendererService
 		{
 			return NOT_APPLICABLE;
 		}
+		
 		final VControl control = (VControl) vElement;
+		if (control.getDomainModelReference() == null)
+		{
+			return NOT_APPLICABLE;
+		}
+		
 		IValueProperty valueProperty;
 		try
 		{
@@ -58,22 +76,28 @@ public class NumericRegisterRendererService implements EMFFormsDIRendererService
 			return NOT_APPLICABLE;
 		}
 		
-		final EStructuralFeature eStructuralFeature = EStructuralFeature.class
-				.cast(valueProperty.getValueType());
-				
-		if (ArchivPackage.eINSTANCE.getRegister_NumericData().equals(eStructuralFeature))
+		final EStructuralFeature feature = (EStructuralFeature) valueProperty.getValueType();
+		if (!feature.isMany())
 		{
-			return 20.0;			
+			return NOT_APPLICABLE;
 		}
-		
+				 
+		if (ArchivPackage.eINSTANCE.getOrdner_Registers().equals(feature))
+		{
+			// das Eingangselement ist eine Referenz auf die Register
+			return 12.0;				
+		}
+
 		return NOT_APPLICABLE;
-
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService#getRendererClass()
+	 */
 	@Override
-	public Class<? extends AbstractSWTRenderer<VControl>> getRendererClass()
-	{
-		return NumericRegisterRenderer.class;
+	public Class<? extends AbstractSWTRenderer<VControl>> getRendererClass() {
+		return OrdnerRenderer.class;
 	}
-
 }

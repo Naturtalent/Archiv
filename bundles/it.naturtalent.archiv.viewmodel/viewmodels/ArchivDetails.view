@@ -1,9 +1,20 @@
-<?xml version="1.0" encoding="ASCII"?>
-<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/170" xmi:id="_DI5VYP3XEeeFUsK2JYpXQw" name="Archive" ecorePath="/Archiv_bundles/it.naturtalent.archiv.model/model/archiv.ecore">
-  <rootEClass href="http://it.naturtalent/archiv#//Archive"/>
-  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_DI7xoP3XEeeFUsK2JYpXQw" name="Control Archiv">
-    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_kG6O0P-pEeeYVNmhHaNxMQ">
-      <domainModelEFeature xsi:type="ecore:EReference" href="http://it.naturtalent/archiv#//Archive/archiv"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmi:id="_G4VzQAioEeq3-aYJL_M-iA" name="Archiv">
+  <rootEClass href="http://it.naturtalent/archiv#//Archiv"/>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_G4XocAioEeq3-aYJL_M-iA" name="Control name">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_G4YPgAioEeq3-aYJL_M-iA">
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://it.naturtalent/archiv#//Archiv/name"/>
     </domainModelReference>
   </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_G4YPgwioEeq3-aYJL_M-iA" name="Control adresse">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_G4YPhAioEeq3-aYJL_M-iA">
+      <domainModelEFeature xsi:type="ecore:EReference" href="http://it.naturtalent/archiv#//Archiv/adresse"/>
+    </domainModelReference>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_G4YPgQioEeq3-aYJL_M-iA" name="Control ordner">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_G4YPggioEeq3-aYJL_M-iA">
+      <domainModelEFeature xsi:type="ecore:EReference" href="http://it.naturtalent/archiv#//Archiv/ordner"/>
+    </domainModelReference>
+  </children>
+  <ecorePaths>/it.naturtalent.archiv.model/model/archiv.ecore</ecorePaths>
 </org.eclipse.emf.ecp.view.model:View>

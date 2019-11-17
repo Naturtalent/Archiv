@@ -6,14 +6,21 @@
 <extension  point="org.eclipse.emf.ecp.view.model.provider.xmi.file">
 
 
+
 <file filePath="viewmodels/Register.view"/>
 
-<file filePath="viewmodels/Archiv.view"/>
+<file filePath="viewmodels/OrdnerMaster.view"/>
 
-<file filePath="viewmodels/Ordner.view"/>
 <file
-      filePath="viewmodels/ArchivMaster.view">
+      filePath="viewmodels/OrdnerDetails.view">
+   <filter
+         key="detail"
+         value="true">
+   </filter>
 </file>
+
+<file filePath="viewmodels/ArchivMaster.view"/>
+
 <file
       filePath="viewmodels/ArchivDetails.view">
    <filter
@@ -21,5 +28,24 @@
          value="true">
    </filter>
 </file>
+
+<file
+      filePath="viewmodels/ArchiveDetails.view">
+   <filter
+         key="detail"
+         value="true">
+   </filter>
+</file>
+
+<file filePath="viewmodels/Ordner.view"/>
+
+<file filePath="viewmodels/ArchiveMaster.view"/>
+
+
+
+
+
+
+
 </extension>
 </plugin>

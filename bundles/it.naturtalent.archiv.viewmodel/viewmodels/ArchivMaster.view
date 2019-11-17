@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="ASCII"?>
-<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/170" xmlns:org.eclipse.emf.ecp.view.treemasterview.model="http://org/eclipse/emf/ecp/view/treemasterview/model" xmi:id="_iawrQP3WEeeFUsK2JYpXQw" name="Archive" ecorePath="/Archiv_bundles/it.naturtalent.archiv.model/model/archiv.ecore">
-  <rootEClass href="http://it.naturtalent/archiv#//Archive"/>
-  <children xsi:type="org.eclipse.emf.ecp.view.treemasterview.model:TreeMasterDetail" xmi:id="_xM-iYP3WEeeFUsK2JYpXQw"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmlns:org.eclipse.emf.ecp.view.treemasterview.model="http://org/eclipse/emf/ecp/view/treemasterview/model" xmi:id="_154uEAinEeq3-aYJL_M-iA" name="Archiv">
+  <rootEClass href="http://it.naturtalent/archiv#//Archiv"/>
+  <children xsi:type="org.eclipse.emf.ecp.view.treemasterview.model:TreeMasterDetail" xmi:id="_7pWLQAinEeq3-aYJL_M-iA"/>
+  <ecorePaths>/it.naturtalent.archiv.model/model/archiv.ecore</ecorePaths>
 </org.eclipse.emf.ecp.view.model:View>

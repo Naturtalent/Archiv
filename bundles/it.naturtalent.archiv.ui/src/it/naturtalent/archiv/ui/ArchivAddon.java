@@ -10,7 +10,6 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 
 import it.naturtalent.application.IShowViewAdapterRepository;
-import it.naturtalent.archiv.ui.importClassic.ArchivClassicImportAdapter;
 import it.naturtalent.e4.project.IExportAdapterRepository;
 import it.naturtalent.e4.project.IImportAdapterRepository;
 import it.naturtalent.e4.project.INewActionAdapterRepository;
@@ -61,10 +60,7 @@ public class ArchivAddon
 		
 		if(importAdapterRepository != null)
 		{
-			importAdapterRepository.addImportAdapter(new ImportArchivAdapter());
-			
-			// Import Classicformat 
-			importAdapterRepository.addImportAdapter(new ArchivClassicImportAdapter());
+			importAdapterRepository.addImportAdapter(new ImportArchivAdapter());			
 		}
 		
 		if(showViewAdapterRepository != null)

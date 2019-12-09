@@ -5,6 +5,8 @@ import org.eclipse.swt.graphics.Image;
 
 import it.naturtalent.archiv.ui.action.ArchivExportAction;
 import it.naturtalent.e4.project.IExportAdapter;
+import it.naturtalent.icons.core.Icon;
+import it.naturtalent.icons.core.IconSize;
 
 public class ExportArchivAdapter implements IExportAdapter
 {
@@ -18,8 +20,7 @@ public class ExportArchivAdapter implements IExportAdapter
 	@Override
 	public Image getImage()
 	{
-		//return SWTResourceManager.getImage(this.getClass(), "/icons/full/elcl16/pin_view.gif"); //$NON-NLS-1$;
-		return null;
+		return Icon.ICON_ARCHIV.getImage(IconSize._16x16_DefaultIconSize);		
 	}
 
 	@Override

@@ -147,7 +147,7 @@ public class ArchivImportDialog extends AbstractImportDialog
 	 * @see it.naturtalent.e4.project.expimp.dialogs.AbstractImportDialog#doImport()
 	 */
 	@Override
-	public void doImport()
+	public void doImport(ExpImportData [] selectedData)
 	{
 		// die selektierten Ordner in einer Liste zusammenfassen
 		final List<Ordner>allImportOrdner = new ArrayList<Ordner>();

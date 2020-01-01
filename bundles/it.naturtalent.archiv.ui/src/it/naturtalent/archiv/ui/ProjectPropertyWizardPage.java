@@ -7,12 +7,14 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.UIEventTopic;
@@ -20,6 +22,7 @@ import org.eclipse.e4.ui.internal.workbench.E4Workbench;
 import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.model.application.ui.menu.MToolItem;
+import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.e4.ui.workbench.IWorkbench;
 import org.eclipse.e4.ui.workbench.modeling.EModelService;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
@@ -49,6 +52,7 @@ import it.naturtalent.archiv.model.archiv.Archive;
 import it.naturtalent.archiv.model.archiv.Ordner;
 import it.naturtalent.archiv.model.archiv.Register;
 import it.naturtalent.e4.project.INtProject;
+import it.naturtalent.e4.project.IResourceNavigator;
 import it.naturtalent.e4.project.model.project.NtProject;
 import it.naturtalent.e4.project.ui.Activator;
 import it.naturtalent.e4.project.ui.emf.ProjectModelEventKey;
@@ -172,8 +176,9 @@ public class ProjectPropertyWizardPage extends WizardPage
 		
 		// ID des momentan im Navigator selektierten Projects ermitteln 
 		MApplication currentApplication = E4Workbench.getServiceContext().get(IWorkbench.class).getApplication();
-		EPartService partService = currentApplication.getContext().get(EPartService.class);
-		MPart part = partService.findPart(ResourceNavigator.RESOURCE_NAVIGATOR_ID);							
+		EModelService modelService = currentApplication.getContext().get(EModelService.class);
+		
+		MPart part = (MPart) modelService.find(ResourceNavigator.RESOURCE_NAVIGATOR_ID, currentApplication);
 		ESelectionService selectionService = part.getContext().get(ESelectionService.class);
 		Object selObject = selectionService.getSelection();
 		if((selObject != null) && (selObject instanceof IResource))
@@ -181,9 +186,7 @@ public class ProjectPropertyWizardPage extends WizardPage
 		
 		// ArchivCommandStackListenr aktivieren
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(Activator.getECPProject());
-		EMFStoreBasicCommandStack commandStack = (EMFStoreBasicCommandStack) domain.getCommandStack();
 		domain.getCommandStack().addCommandStackListener(archivCommandStackListener);
-
 	}
 	
 	@PostConstruct
@@ -353,6 +356,5 @@ public class ProjectPropertyWizardPage extends WizardPage
 	{
 		projectNameText = text;
 	}
-
 
 }

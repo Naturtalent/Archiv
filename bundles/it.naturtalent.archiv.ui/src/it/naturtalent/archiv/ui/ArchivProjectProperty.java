@@ -14,6 +14,12 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.internal.workbench.E4Workbench;
+import org.eclipse.e4.ui.model.application.MApplication;
+import org.eclipse.e4.ui.model.application.ui.basic.MPart;
+import org.eclipse.e4.ui.workbench.IWorkbench;
+import org.eclipse.e4.ui.workbench.modeling.EModelService;
+import org.eclipse.e4.ui.workbench.modeling.EPartService;
+import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 import org.eclipse.emf.ecp.spi.ui.util.ECPHandlerHelper;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -26,10 +32,12 @@ import org.eclipse.swt.widgets.Text;
 import it.naturtalent.archiv.model.archiv.Ordner;
 import it.naturtalent.archiv.model.archiv.Register;
 import it.naturtalent.archiv.ui.action.SelectRegisterAction;
+import it.naturtalent.archiv.ui.parts.ArchivView;
 import it.naturtalent.e4.project.INtProject;
 import it.naturtalent.e4.project.INtProjectProperty;
 import it.naturtalent.e4.project.ui.emf.NtProjectPropertyFactory;
 import it.naturtalent.e4.project.ui.emf.ProjectModelEventKey;
+import it.naturtalent.e4.project.ui.navigator.ResourceNavigator;
 
 /**
  * ArchivProjectProperty Adapter
@@ -308,7 +316,7 @@ public class ArchivProjectProperty implements INtProjectProperty
 	@Override
 	public IWizardPage createWizardPage()
 	{
-		IEclipseContext context = E4Workbench.getServiceContext();		
+		IEclipseContext context = E4Workbench.getServiceContext();
 		archivWizardPage  = ContextInjectionFactory.make(ProjectPropertyWizardPage.class, context);	
 		archivWizardPage.setArchivProjectProperty(this);
 		return archivWizardPage;

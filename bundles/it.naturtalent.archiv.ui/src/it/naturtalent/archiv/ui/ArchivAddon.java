@@ -56,7 +56,10 @@ public class ArchivAddon
 			newWizardRepository.addNewActionAdapter(new NewArchivWizardAdapter());
 		
 		if(exportAdapterRepository != null)
+		{
 			exportAdapterRepository.addExportAdapter(new ExportArchivAdapter());
+			exportAdapterRepository.addExportAdapter(new JournalArchivExportAdapter());
+		}
 		
 		if(importAdapterRepository != null)
 		{

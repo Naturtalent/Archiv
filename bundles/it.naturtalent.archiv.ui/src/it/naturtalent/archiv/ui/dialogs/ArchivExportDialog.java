@@ -18,6 +18,7 @@ import it.naturtalent.archiv.model.archiv.Archive;
 import it.naturtalent.archiv.ui.ArchivUtils;
 import it.naturtalent.e4.project.expimp.ExpImportData;
 import it.naturtalent.e4.project.expimp.dialogs.AbstractExportDialog;
+import it.naturtalent.e4.project.expimp.dialogs.AbstractExportDialog2;
 import it.naturtalent.e4.project.expimp.dialogs.ExportDestinationComposite;
 
 public class ArchivExportDialog extends AbstractExportDialog
@@ -68,11 +69,6 @@ public class ArchivExportDialog extends AbstractExportDialog
 		setModelData(lexpimpdata);
 	}
 	
-	
-	@Override
-	public void doExport()
-	{
-		exportEMFModeData();
-	}
+
 
 }

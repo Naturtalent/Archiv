@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
 <artifacts size='1'>
-  <artifact classifier='org.eclipse.update.feature' id='it.naturtalent.feature.archiv' version='1.0.0.201912092110'>
+  <artifact classifier='org.eclipse.update.feature' id='it.naturtalent.feature.archiv' version='1.0.0.202001122144'>
     <properties size='6'>
-      <property name='artifact.size' value='758'/>
-      <property name='download.size' value='758'/>
+      <property name='artifact.size' value='759'/>
+      <property name='download.size' value='759'/>
       <property name='maven-groupId' value='it.naturtalent.archiv'/>
       <property name='maven-artifactId' value='it.naturtalent.feature.archiv'/>
       <property name='maven-version' value='1.0.0-SNAPSHOT'/>

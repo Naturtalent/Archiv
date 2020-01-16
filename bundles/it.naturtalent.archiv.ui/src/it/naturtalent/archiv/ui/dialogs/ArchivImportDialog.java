@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Display;
 
 import it.naturtalent.archiv.model.archiv.Archiv;
 import it.naturtalent.archiv.model.archiv.ArchivPackage;
+import it.naturtalent.archiv.model.archiv.Archive;
 import it.naturtalent.archiv.model.archiv.Ordner;
 import it.naturtalent.archiv.model.archiv.Register;
 import it.naturtalent.archiv.ui.ArchivProjectProperty;
@@ -35,6 +36,7 @@ import it.naturtalent.archiv.ui.ArchivUtils;
 import it.naturtalent.e4.project.INtProjectPropertyFactory;
 import it.naturtalent.e4.project.expimp.ExpImportData;
 import it.naturtalent.e4.project.expimp.dialogs.AbstractImportDialog;
+import it.naturtalent.e4.project.ui.emf.ExpImpUtils;
 import it.naturtalent.e4.project.ui.parts.emf.NtProjectView;
 
 
@@ -82,6 +84,35 @@ public class ArchivImportDialog extends AbstractImportDialog
 	@Override
 	public void readImportSource()
 	{
+		EList<EObject>eObjects = ExpImpUtils.loadEObjectFromResource(importPath);
+		
+		if ((eObjects != null) && (!eObjects.isEmpty()))
+		{
+			lexpimpdata = new ArrayList<ExpImportData>();
+			for (EObject eObject : eObjects)
+			{
+				if (eObject instanceof Archive)
+				{
+					Archive archive = (Archive) eObject;
+					EList<Archiv> allArchiv = archive.getArchiv();
+					for (Archiv archiv : allArchiv)
+					{
+						ExpImportData expimpdata = new ExpImportData();
+						expimpdata.setLabel(archiv.getName());
+						expimpdata.setData(archiv);
+						lexpimpdata.add(expimpdata);
+					}
+					
+					setModelData(lexpimpdata);		
+				}
+			}
+		}
+	}
+	
+	/*
+	@Override
+	public void readImportSource()
+	{
 		URI fileURI = URI.createFileURI(importPath);		
 		ResourceSet resourceSet = new ResourceSetImpl();
 
@@ -106,6 +137,7 @@ public class ArchivImportDialog extends AbstractImportDialog
 		//disableOrdnerWithAssignedRegisters(lexpimpdata);
 		setModelData(lexpimpdata);		
 	}
+	*/
 	
 	/*
 	 * Alle Import-Ordner disablen (ausgrauen) die mindestens ein Register haben, dass mit einem
@@ -146,6 +178,7 @@ public class ArchivImportDialog extends AbstractImportDialog
 	 * (non-Javadoc)
 	 * @see it.naturtalent.e4.project.expimp.dialogs.AbstractImportDialog#doImport()
 	 */
+	/*
 	@Override
 	public void doImport(ExpImportData [] selectedData)
 	{
@@ -195,8 +228,10 @@ public class ArchivImportDialog extends AbstractImportDialog
 		eventBroker.post(NtProjectView.UPDATE_PROJECTVIEW_REQUEST, allImportOrdner.get(0));
 
 	}
+	*/
 	
 	// Name des ArchivPropertyFactory
+	/*
 	private String ArchivPropertyFactoryName = ArchivProjectProperty.class.getName()
 			+ INtProjectPropertyFactory.PROJECTPROPERTYFACTORY_EXTENSION;
 	
@@ -205,6 +240,7 @@ public class ArchivImportDialog extends AbstractImportDialog
 	{
 		// TODO Auto-generated method stub
 	}
+	*/
 	
 	
 }

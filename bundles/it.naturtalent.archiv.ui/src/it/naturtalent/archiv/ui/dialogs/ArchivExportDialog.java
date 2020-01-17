@@ -29,7 +29,7 @@ public class ArchivExportDialog extends AbstractExportDialog
 	public ArchivExportDialog()
 	{
 		super(shell);
-		// TODO Auto-generated constructor stub
+		exportSettingKey = ARCHIVEXPORTPATH_SETTING_KEY;
 	}
 	
 	@Inject
@@ -53,9 +53,8 @@ public class ArchivExportDialog extends AbstractExportDialog
 	 */
 	@Override
 	protected void init()
-	{	
-		exportSettingKey = ARCHIVEXPORTPATH_SETTING_KEY;
-		super.init();
+	{			
+		super.init(); // Exportpath aus Settings uebernehmen
 		List<ExpImportData>lexpimpdata = new ArrayList<ExpImportData>();
 		Archive archives = ArchivUtils.getArchive();
 		EList<Archiv>archive = archives.getArchiv();

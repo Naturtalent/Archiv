@@ -184,6 +184,7 @@ public class JournalArchivExportOperation implements IRunnableWithProgress
 	// SpreadSheet-Document speichern
 	private void saveSpreedSheat(SpreadsheetDocument calcDoc, String archivName) throws Exception
 	{
+		archivName = FilenameUtils.removeExtension(archivName)+".ods";	
 		File sheatFile = new File(destDir, archivName);
 		if(sheatFile.exists())
 			FileUtils.forceDelete(sheatFile);				

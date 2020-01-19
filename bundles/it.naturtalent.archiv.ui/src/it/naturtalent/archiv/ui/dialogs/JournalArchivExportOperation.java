@@ -13,6 +13,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.style.Font;
 import org.odftoolkit.simple.style.StyleTypeDefinitions.FontStyle;
@@ -30,6 +32,7 @@ import it.naturtalent.e4.project.INtProject;
 import it.naturtalent.e4.project.expimp.ExpImportData;
 import it.naturtalent.e4.project.model.project.NtProject;
 import it.naturtalent.e4.project.ui.Activator;
+import it.naturtalent.libreoffice.OpenLoDocument;
 
 /**
  * Export die Archivdaten erfolgt in einer Runningprogress Operation.
@@ -43,6 +46,8 @@ public class JournalArchivExportOperation implements IRunnableWithProgress
 	
 	private File destDir; 
 	private ExpImportData[] selectedArchives;
+	
+	private SpreadsheetDocument calcDoc;
 	
 	
 	/*
@@ -64,7 +69,7 @@ public class JournalArchivExportOperation implements IRunnableWithProgress
 	@Override
 	public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException
 	{
-		SpreadsheetDocument calcDoc = null;
+		calcDoc = null;
 		
 		monitor.beginTask("Archivdaten exportieren",IProgressMonitor.UNKNOWN);		
 		for(ExpImportData exportArchiv : selectedArchives)
@@ -204,5 +209,12 @@ public class JournalArchivExportOperation implements IRunnableWithProgress
 						
 		return tableNames;
 	}
+
+	public SpreadsheetDocument getCalcDoc()
+	{
+		return calcDoc;
+	}
+	
+	
 
 }

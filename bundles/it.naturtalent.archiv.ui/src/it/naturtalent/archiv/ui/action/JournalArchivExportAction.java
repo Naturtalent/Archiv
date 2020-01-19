@@ -13,10 +13,13 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 
 import it.naturtalent.archiv.ui.dialogs.JournalArchivExportDialog;
 import it.naturtalent.archiv.ui.dialogs.JournalArchivExportOperation;
+import it.naturtalent.archiv.ui.dialogs.JournalArchivFinishDialog;
 import it.naturtalent.e4.project.expimp.ExpImportData;
+import it.naturtalent.libreoffice.OpenLoDocument;
 
 
 /**
@@ -39,6 +42,8 @@ public class JournalArchivExportAction extends Action
 	private IEclipseContext context;
 	
 	//private static final String ARCHIV_TABLENAME = "Archive";
+	
+	private JournalArchivExportOperation exportOperation;
 
 	@Override
 	public void run()
@@ -55,7 +60,8 @@ public class JournalArchivExportAction extends Action
 				{					
 					try
 					{
-						doExport(exportDir, exportDialog.getSelectedData());						
+						doExport(exportDir, exportDialog.getSelectedData());
+						
 					} catch (Exception e)
 					{
 						// TODO Auto-generated catch block
@@ -70,7 +76,7 @@ public class JournalArchivExportAction extends Action
 	private void doExport(File destFile, ExpImportData[] archives) throws Exception
 	{
 		// Progressdialog erzeugen und starten 
-		JournalArchivExportOperation exportOperation = new JournalArchivExportOperation(destFile, archives);
+		exportOperation = new JournalArchivExportOperation(destFile, archives);
 		
 		try
 		{
@@ -78,6 +84,16 @@ public class JournalArchivExportAction extends Action
 			ProgressMonitorDialog dialog = new ProgressMonitorDialog(Display.getDefault().getActiveShell());			
 			dialog.setCancelable(true);
 			dialog.run(true, true, exportOperation);
+
+			// Bestaetigungsdialog
+			String path = exportOperation.getCalcDoc().getBaseURI();
+			JournalArchivFinishDialog finishDialog = new JournalArchivFinishDialog(Display.getDefault().getActiveShell(), path);
+			finishDialog.open();
+			if(finishDialog.isOpenFlag())
+			{			
+				// SpreedSheat oeffnen
+				OpenLoDocument.loadLoDocument(path);	
+			}
 			
 		} catch (InvocationTargetException e)
 		{

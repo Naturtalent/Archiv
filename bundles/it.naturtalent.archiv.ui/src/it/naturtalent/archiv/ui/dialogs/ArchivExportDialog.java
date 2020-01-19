@@ -36,11 +36,12 @@ public class ArchivExportDialog extends AbstractExportDialog
 	@Optional
 	public void handleModelChangedEvent(@UIEventTopic(ExportDestinationComposite.EXPORTDESTINATION_EVENT) String exportPath)
 	{
-		this.exportPath = exportPath;		
+		this.exportPath = exportPath;
+		update();
 	}
 	
 	@PostConstruct
-	public void postConstruct(@ Named (IServiceConstants.ACTIVE_SHELL) @ Optional Shell shell)
+	public void postConstruct(@Named (IServiceConstants.ACTIVE_SHELL) @ Optional Shell shell)
 	{
 		this.shell = shell;
 	}

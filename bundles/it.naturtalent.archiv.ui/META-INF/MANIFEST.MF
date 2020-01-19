@@ -48,7 +48,8 @@ Require-Bundle: org.eclipse.e4.ui.workbench;bundle-version="1.0.1",
  org.eclipse.emf.ecp.view.control.multireference,
  org.eclipse.emf.common,
  it.naturtalent.e4.office.ui,
- it.naturtalent.libreoffice.odf
+ it.naturtalent.libreoffice.odf,
+ it.naturtalent.libreoffice;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Service-Component: OSGI-INF/archivmasterdetailrenderer.xml,OSGI-INF/registernumericrenderer.xml,OSGI-INF/registerletterrenderer.xml,OSGI-INF/registerreferencerenderer.xml,OSGI-INF/ordnerrenderer.xml,
  OSGI-INF/archivrenderer.xml

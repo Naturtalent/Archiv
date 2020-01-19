@@ -39,5 +39,5 @@ public class JournalArchivExportDialog extends ArchivExportDialog
 		exportDestinationComposite.disposeFileWidget();
 		super.init();
 	}
-
+	
 }

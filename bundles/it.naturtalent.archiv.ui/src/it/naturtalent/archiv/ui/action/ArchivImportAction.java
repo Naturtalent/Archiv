@@ -1,8 +1,6 @@
 package it.naturtalent.archiv.ui.action;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -11,23 +9,16 @@ import org.eclipse.e4.core.contexts.ContextInjectionFactory;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.widgets.Display;
 
 import it.naturtalent.archiv.model.archiv.Archiv;
-import it.naturtalent.archiv.model.archiv.ArchivPackage;
 import it.naturtalent.archiv.model.archiv.Archive;
-import it.naturtalent.archiv.model.archiv.Ordner;
 import it.naturtalent.archiv.ui.ArchivUtils;
 import it.naturtalent.archiv.ui.dialogs.ArchivImportDialog;
 import it.naturtalent.e4.project.expimp.ExpImportData;
-import it.naturtalent.e4.project.ui.parts.emf.NtProjectView;
-import it.naturtalent.office.model.address.Kontakt;
 
 
 public class ArchivImportAction extends Action
@@ -58,10 +49,10 @@ public class ArchivImportAction extends Action
 	 * (non-Javadoc)
 	 * @see it.naturtalent.e4.project.expimp.dialogs.AbstractImportDialog#doImport()
 	 */
-	public void doImport(ExpImportData [] selectedData)
+	public void doImport(final ExpImportData [] selectedData)
 	{
 		// Containerelement
-		Archive archive = ArchivUtils.getArchive();
+		final Archive archive = ArchivUtils.getArchive();
 		
 		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(Display.getDefault().getActiveShell());				
 		progressDialog.open();
@@ -77,10 +68,10 @@ public class ArchivImportAction extends Action
 					for(ExpImportData expimpdata : selectedData)
 					{
 						Object obj = expimpdata.getData();
-						if (obj instanceof Kontakt)
+						if (obj instanceof Archiv)
 						{
-							Kontakt kontakt = (Kontakt) obj;
-							kontakteList.add(kontakt);
+							Archiv archiv = (Archiv) obj;
+							archive.getArchiv().add(archiv);
 							monitor.worked(1);
 						}
 					}
@@ -88,6 +79,11 @@ public class ArchivImportAction extends Action
 					monitor.done();
 				}
 			});
+			
+			eventBroker.post(ArchivUtils.REFRESH_MASTER_REQUEST, null);
+			//eventBroker.post(ArchivUtils.SELECT_ARCHIV_REQUEST, allImportOrdner.get(0));		
+			//eventBroker.post(NtProjectView.UPDATE_PROJECTVIEW_REQUEST, allImportOrdner.get(0));
+
 		}
 		catch(Exception e)
 		{
@@ -95,9 +91,6 @@ public class ArchivImportAction extends Action
 		}
 
 		progressDialog.close();	
-
-		
-		
 	}	
 	
 	/*

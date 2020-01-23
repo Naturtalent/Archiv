@@ -62,21 +62,10 @@ public class ArchivImportDialog extends AbstractImportDialog
 		// TODO Auto-generated method stub
 		Control control = super.createDialogArea(parent);
 		
-		/*
-		checkBoxTableViewer.setLabelProvider(new GrayedTableLabelProvider());		
-		
-		// Ordner mit gekoppelten Registern 'eingrauen'
-		disableOrdnerWithAssignedRegisters(lexpimpdata);
-
-		checkBoxTableViewer.refresh();
-		*/
-		
 		// Button 'existierende ueberschreiben' ausblenden
 		btnCheckOverwrite.dispose();
 		return control;
 	}
-
-
 
 	/* 
 	 * Die in der Quelldatei gespeicherten Archive lesen und Anzeigen.
@@ -153,6 +142,7 @@ public class ArchivImportDialog extends AbstractImportDialog
 	 */ 
 	private void disableExists(List<ExpImportData>lexpimpdata)
 	{
+		setErrorMessage(null);
 		checkBoxTableViewer.setLabelProvider(new GrayedTableLabelProvider());		
 		
 		EList<Archiv>archive = ArchivUtils.getArchive().getArchiv();		 
@@ -164,6 +154,7 @@ public class ArchivImportDialog extends AbstractImportDialog
 			{
 				if(StringUtils.equals(existArchiv.getName(), importedArchiv.getName()))
 				{
+					setErrorMessage("nicht alle Archive können importiert werden (existieren bereits(");
 					checkBoxTableViewer.setGrayed(lexpimp, true);
 					break;
 				}

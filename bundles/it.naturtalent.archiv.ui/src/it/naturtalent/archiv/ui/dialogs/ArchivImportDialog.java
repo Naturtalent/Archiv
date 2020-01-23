@@ -61,13 +61,17 @@ public class ArchivImportDialog extends AbstractImportDialog
 	{
 		// TODO Auto-generated method stub
 		Control control = super.createDialogArea(parent);
+		
+		/*
 		checkBoxTableViewer.setLabelProvider(new GrayedTableLabelProvider());		
 		
 		// Ordner mit gekoppelten Registern 'eingrauen'
 		disableOrdnerWithAssignedRegisters(lexpimpdata);
 
 		checkBoxTableViewer.refresh();
+		*/
 		
+		// Button 'existierende ueberschreiben' ausblenden
 		btnCheckOverwrite.dispose();
 		return control;
 	}
@@ -75,6 +79,7 @@ public class ArchivImportDialog extends AbstractImportDialog
 
 
 	/* 
+	 * Die in der Quelldatei gespeicherten Archive lesen und Anzeigen.
 	 * Wird im Zuge der Initialisierung aufgerufen (einlesen Resource des SettingImportPfad)
 	 * oder nach der Auswahl der Quelldatei im Dialog.
 	 * 
@@ -103,9 +108,13 @@ public class ArchivImportDialog extends AbstractImportDialog
 						lexpimpdata.add(expimpdata);
 					}
 					
+					// Importdaten an Viewer ubergeben
 					setModelData(lexpimpdata);		
 				}
 			}
+			
+			// bestehende Archive ausgrauen
+			disableExists(lexpimpdata);
 		}
 	}
 	
@@ -140,12 +149,28 @@ public class ArchivImportDialog extends AbstractImportDialog
 	*/
 	
 	/*
-	 * Alle Import-Ordner disablen (ausgrauen) die mindestens ein Register haben, dass mit einem
-	 * Projekt gekoppelt ist dieses Projekt aber bereits durch ein existierendendes 
-	 * Register gekoppelt ist. 
-	 */
-	private void disableOrdnerWithAssignedRegisters(List<ExpImportData>lexpimpdata)
+	 * Namensgleiche Archive werden im Viewer ausgegraut.
+	 */ 
+	private void disableExists(List<ExpImportData>lexpimpdata)
 	{
+		checkBoxTableViewer.setLabelProvider(new GrayedTableLabelProvider());		
+		
+		EList<Archiv>archive = ArchivUtils.getArchive().getArchiv();		 
+		for(ExpImportData lexpimp : lexpimpdata)
+		{
+			Archiv importedArchiv = (Archiv)lexpimp.getData();
+			EList<Archiv>existArchive = ArchivUtils.getArchive().getArchiv();				
+			for(Archiv existArchiv : existArchive)
+			{
+				if(StringUtils.equals(existArchiv.getName(), importedArchiv.getName()))
+				{
+					checkBoxTableViewer.setGrayed(lexpimp, true);
+					break;
+				}
+			}
+		}
+		
+		/* alt: projektbezogene Register ausgrauen
 		if (lexpimpdata != null)
 		{
 			for (ExpImportData lexpimp : lexpimpdata)
@@ -170,6 +195,9 @@ public class ArchivImportDialog extends AbstractImportDialog
 				}
 			}
 		}
+		*/
+		
+		checkBoxTableViewer.refresh();
 	}
 
 	/* 
